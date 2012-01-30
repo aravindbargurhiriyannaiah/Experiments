@@ -1,0 +1,33 @@
+My experiments with programming in Java with Maven, Logback, Mongodb etc.
+
+Some info about the structure of the project (for forgetful people like me).
+Experiments is a multi-module maven project and has the following structure (Jan 2012)
+-Experiments
+	-LightLotus
+	-ConfigReader
+	-UrlShortner
+	-ExperimentLogger
+
+To create a module under the multi-module maven project / parent project, do the following
+1. clone the github project, Experiments
+2. cd Experiments
+3. mvn archetype:generate
+4. In my setup, 171, is the number you ought to select for a simple maven project (remote -> org.apache.maven.archetypes:maven-archetype-quickstart (An archetype which contains a sample Maven project.))
+5. You will be presented with the following prompts. Please enter the information as shown below (or something else if desired)
+	a. Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): 171: 
+	b. Choose org.apache.maven.archetypes:maven-archetype-quickstart version: 5: 1.0
+	c. Define value for property 'groupId': : com.funkyganesha
+	d. Define value for property 'artifactId': : <name of the child module>
+	e. Define value for property 'version': : <Just press Enter>
+	f. Define value for property 'package': : <Just press Enter>
+	g. Confirm properties configuration: Y
+	A child module (like LightLotus, ConfigReader, etc) will be created under the parent module Experiments. This can be verified by the existence of <modules>Child module name<modules/> in pom.xml
+
+To create a multi-module maven project, like Experiments, do the following.
+1. mvn archetype:generate
+2. Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): 171: 338 (338: remote -> org.codehaus.mojo.archetypes:pom-root (Root project archetype for creating multi module projects) - might be different on your system.)
+3. Choose org.codehaus.mojo.archetypes:pom-root version: 1 for 1.0
+4. All the prompts as mentioned above in 5 will appear - enter appropriate values.
+5. A parent module will be created - there will be no src/ and the pom will have <packaging>pom</packaging> in it.
+
+

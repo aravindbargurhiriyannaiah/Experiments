@@ -1,0 +1,3 @@
+This is a dictionary I tried to implement using basic Java constructs, without using java util collections. It was tough to grapple around the memory allocation concepts but was fun nonetheless.
+
+I later realized that I had to realize trie trees which facilitates effective navigation - my current implementation is clumsy with respect to memory allocation and it does not help delete words that have been inserted.
