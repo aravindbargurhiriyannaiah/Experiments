@@ -1,5 +1,6 @@
 package com.funkyganesha;
 
+import com.google.common.collect.Maps;
 import java.util.*;
 
 
@@ -12,7 +13,7 @@ import org.apache.commons.lang.math.RandomUtils;
  *
  */
 public class Anagrams {
-    private static Map<Character, Integer> lookUp = new HashMap<Character, Integer>();
+    private static Map<Character, Integer> lookUp = Maps.newHashMap();
 
     static {
         //Load the entire ascii table into the map

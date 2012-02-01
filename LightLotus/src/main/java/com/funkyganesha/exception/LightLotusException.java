@@ -6,7 +6,7 @@ public class LightLotusException extends RuntimeException {
     }
 
     public LightLotusException(String s) {
-        super(s);    //To change body of overridden methods use File | Settings | File Templates.
+        super(s);            //To change body of overridden methods use File | Settings | File Templates.
     }
 
     public LightLotusException(String s, Throwable throwable) {

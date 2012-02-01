@@ -8,11 +8,10 @@
   <name>Experiments</name>
   <url>http://maven.apache.org</url>
   <modules>
-    <module>ExperimentLogger</module>
     <module>ConfigReader</module>
     <module>LightLotus</module>
     <module>Dictionary</module>
-    <module>Url-Shortner</module>
     <module>tweeter</module>
+    <module>Url-Shortner</module>
   </modules>
 </project>

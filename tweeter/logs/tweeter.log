@@ -1,0 +1,9 @@
+
+Jan-31-2012 @ 23:45:36 TwitterImpl.readTweets [43] - Reading tweets by[martinfowler] 
+Jan-31-2012 @ 23:45:37 TwitterImpl.readTweets [51] - No of status found [100] 
+Jan-31-2012 @ 23:45:37 TwitterImpl.readTweets [43] - Reading tweets by[martinfowler] 
+Jan-31-2012 @ 23:45:37 TwitterImpl.readTweets [51] - No of status found [20] 
+Jan-31-2012 @ 23:45:37 TwitterImpl.readTweets [54] - Cannot continue; invalid twitterId [null] 
+Jan-31-2012 @ 23:45:37 TwitterImpl.readTweets [54] - Cannot continue; invalid twitterId [null] 
+Jan-31-2012 @ 23:45:37 TwitterImpl.readTweets [54] - Cannot continue; invalid twitterId [] 
+Jan-31-2012 @ 23:45:37 TwitterImpl.searchTwitter [72] - No of search results found [96]
