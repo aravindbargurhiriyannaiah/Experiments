@@ -1,4 +1,4 @@
-package com.funkyganesha;
+package com.funkyganesha.service;
 
 import twitter4j.Paging;
 import twitter4j.ResponseList;

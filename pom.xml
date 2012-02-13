@@ -13,5 +13,7 @@
     <module>Dictionary</module>
     <module>tweeter</module>
     <module>Url-Shortner</module>
+    <module>spring-annotations</module>
+    <module>Url-Shortner</module>
   </modules>
 </project>

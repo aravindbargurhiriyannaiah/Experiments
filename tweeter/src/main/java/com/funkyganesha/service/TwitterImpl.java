@@ -1,4 +1,4 @@
-package com.funkyganesha;
+package com.funkyganesha.service;
 
 
 import twitter4j.Paging;
@@ -26,7 +26,7 @@ public class TwitterImpl implements Twitter {
     private twitter4j.Twitter twitter = new TwitterFactory().getInstance();
 
     public boolean tweet(String message, String twitterId) throws TwitterException {
-        boolean result = false;
+        boolean result;
         Status status = twitter.updateStatus("test: posted from my tweeter" + new Date());
         result = StringUtils.isNotBlank(status.getText());
         return result;

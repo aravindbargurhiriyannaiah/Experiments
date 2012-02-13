@@ -47,5 +47,9 @@
             <artifactId>logback-classic</artifactId>
             <version>0.9.26</version>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>3.0</version>
+        </dependency></dependencies>
 </project>
