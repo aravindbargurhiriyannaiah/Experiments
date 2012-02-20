@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.013" errors="0" skipped="0" tests="1" name="com.funkyganesha.AppTest">
+<testsuite failures="0" time="0.008" errors="0" skipped="0" tests="1" name="com.funkyganesha.AppTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-sun-1.6.0.26/jre/lib/amd64"/>
@@ -19,7 +19,7 @@
     <property name="basedir" value="/home/aravind/Experiments/spring-annotations"/>
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-6-sun-1.6.0.26/jre/lib/endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="surefire.real.class.path" value="/home/aravind/Experiments/spring-annotations/target/surefire/surefirebooter7068607997460126033.jar"/>
+    <property name="surefire.real.class.path" value="/home/aravind/Experiments/spring-annotations/target/surefire/surefirebooter3708086461304027537.jar"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="line.separator" value="
 "/>
@@ -27,7 +27,7 @@
     <property name="os.name" value="Linux"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/lib/jvm/java-6-sun-1.6.0.26/jre/lib/amd64/server:/usr/lib/jvm/java-6-sun-1.6.0.26/jre/lib/amd64:/usr/lib/jvm/java-6-sun-1.6.0.26/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
-    <property name="surefire.test.class.path" value="/home/aravind/Experiments/spring-annotations/target/test-classes:/home/aravind/Experiments/spring-annotations/target/classes:/home/aravind/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/home/aravind/.m2/repository/org/springframework/spring-core/3.0.5.RELEASE/spring-core-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/org/springframework/spring-asm/3.0.5.RELEASE/spring-asm-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/aravind/.m2/repository/ch/qos/logback/logback-classic/0.9.26/logback-classic-0.9.26.jar:/home/aravind/.m2/repository/ch/qos/logback/logback-core/0.9.26/logback-core-0.9.26.jar:/home/aravind/.m2/repository/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar:"/>
+    <property name="surefire.test.class.path" value="/home/aravind/Experiments/spring-annotations/target/test-classes:/home/aravind/Experiments/spring-annotations/target/classes:/home/aravind/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/home/aravind/.m2/repository/ch/qos/logback/logback-classic/0.9.26/logback-classic-0.9.26.jar:/home/aravind/.m2/repository/ch/qos/logback/logback-core/0.9.26/logback-core-0.9.26.jar:/home/aravind/.m2/repository/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar:/home/aravind/.m2/repository/org/springframework/spring-beans/3.0.5.RELEASE/spring-beans-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/org/springframework/spring-core/3.0.5.RELEASE/spring-core-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/aravind/.m2/repository/org/springframework/spring-context/3.0.5.RELEASE/spring-context-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/org/springframework/spring-aop/3.0.5.RELEASE/spring-aop-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar:/home/aravind/.m2/repository/org/springframework/spring-expression/3.0.5.RELEASE/spring-expression-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/org/springframework/spring-asm/3.0.5.RELEASE/spring-asm-3.0.5.RELEASE.jar:"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="50.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -38,11 +38,11 @@
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="1.6"/>
     <property name="user.name" value="aravind"/>
-    <property name="java.class.path" value="/home/aravind/Experiments/spring-annotations/target/test-classes:/home/aravind/Experiments/spring-annotations/target/classes:/home/aravind/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/home/aravind/.m2/repository/org/springframework/spring-core/3.0.5.RELEASE/spring-core-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/org/springframework/spring-asm/3.0.5.RELEASE/spring-asm-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/aravind/.m2/repository/ch/qos/logback/logback-classic/0.9.26/logback-classic-0.9.26.jar:/home/aravind/.m2/repository/ch/qos/logback/logback-core/0.9.26/logback-core-0.9.26.jar:/home/aravind/.m2/repository/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar:"/>
+    <property name="java.class.path" value="/home/aravind/Experiments/spring-annotations/target/test-classes:/home/aravind/Experiments/spring-annotations/target/classes:/home/aravind/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/home/aravind/.m2/repository/ch/qos/logback/logback-classic/0.9.26/logback-classic-0.9.26.jar:/home/aravind/.m2/repository/ch/qos/logback/logback-core/0.9.26/logback-core-0.9.26.jar:/home/aravind/.m2/repository/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar:/home/aravind/.m2/repository/org/springframework/spring-beans/3.0.5.RELEASE/spring-beans-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/org/springframework/spring-core/3.0.5.RELEASE/spring-core-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/aravind/.m2/repository/org/springframework/spring-context/3.0.5.RELEASE/spring-context-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/org/springframework/spring-aop/3.0.5.RELEASE/spring-aop-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar:/home/aravind/.m2/repository/org/springframework/spring-expression/3.0.5.RELEASE/spring-expression-3.0.5.RELEASE.jar:/home/aravind/.m2/repository/org/springframework/spring-asm/3.0.5.RELEASE/spring-asm-3.0.5.RELEASE.jar:"/>
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/usr/lib/jvm/java-6-sun-1.6.0.26/jre"/>
-    <property name="sun.java.command" value="/home/aravind/Experiments/spring-annotations/target/surefire/surefirebooter7068607997460126033.jar /home/aravind/Experiments/spring-annotations/target/surefire/surefire1030356362035217694tmp /home/aravind/Experiments/spring-annotations/target/surefire/surefire9101077677374998271tmp"/>
+    <property name="sun.java.command" value="/home/aravind/Experiments/spring-annotations/target/surefire/surefirebooter3708086461304027537.jar /home/aravind/Experiments/spring-annotations/target/surefire/surefire1252877343960194195tmp /home/aravind/Experiments/spring-annotations/target/surefire/surefire8906823462205056740tmp"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="en"/>
     <property name="java.vm.info" value="mixed mode"/>
