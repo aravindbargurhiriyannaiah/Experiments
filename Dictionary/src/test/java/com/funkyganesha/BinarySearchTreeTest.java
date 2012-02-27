@@ -1,5 +1,6 @@
 package com.funkyganesha;
 
+import org.apache.commons.lang.math.RandomUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,9 +19,9 @@ public class BinarySearchTreeTest {
 
     @Test
     public void testInsert() throws Exception {
-        tree.insert(3);
-        tree.insert(1);
-        tree.insert(2);
+        for (int i = 0 ; i < 1000 ; i++) {
+            tree.insert(RandomUtils.nextInt());
+        }
         TreeUtil.printInOrder(tree.getRoot());
 
     }
