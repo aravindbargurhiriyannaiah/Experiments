@@ -5,6 +5,7 @@ package com.funkyganesha;
  */
 public interface FibonacciSeriesGenerator {
     /**
+     *
      * @param number
      * @return the first N fibonacci series starting from 0
      *         <br/>
@@ -16,9 +17,10 @@ public interface FibonacciSeriesGenerator {
      *         <li>generateFirst(0) = null</li>
      *         </ol>
      */
-    int[] generateFirstNFibonacciSeriesNumbers(int number);
+    long[] generateFirstNFibonacciSeriesNumbers(int number);
 
     /**
+     *
      * @param number
      * @return the Fibonacci series starting from 0 until the provided number param.
      *         <br/>
@@ -30,5 +32,5 @@ public interface FibonacciSeriesGenerator {
      *         <li>generateUntil(0) = 0</li>
      *         </ol>
      */
-    int[] generateFibonacciSeriesUntil(int number);
+    long[] generateFibonacciSeriesUntil(int number);
 }
