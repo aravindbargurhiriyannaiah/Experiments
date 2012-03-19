@@ -5,17 +5,17 @@ package com.funkyganesha.bean;
  */
 public class Node {
     private int value;
-    private Node left;
-    private Node right;
+    private Node leftChild;
+    private Node rightChild;
 
     public Node(int value) {
         this.value = value;
     }
 
-    public Node(Node node  ) {
+    public Node(Node node) {
         this.value = node.value;
-        this.left = node.getLeft();
-        this.right = node.getRight();
+        this.leftChild = node.getLeftChild();
+        this.rightChild = node.getRightChild();
     }
 
     public int getValue() {
@@ -26,19 +26,23 @@ public class Node {
         this.value = value;
     }
 
-    public Node getLeft() {
-        return left;
+    public Node getLeftChild() {
+        return leftChild;
     }
 
-    public void setLeft(Node left) {
-        this.left = left;
+    public void setLeftChild(Node left) {
+        this.leftChild = left;
     }
 
-    public Node getRight() {
-        return right;
+    public Node getRightChild() {
+        return rightChild;
     }
 
-    public void setRight(Node right) {
-        this.right = right;
+    public void setRightChild(Node right) {
+        this.rightChild = right;
+    }
+
+    public static boolean isLeaf(Node node) {
+        return (node != null && node.getLeftChild() == null && node.getRightChild() == null) ? true : false;
     }
 }
