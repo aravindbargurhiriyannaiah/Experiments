@@ -9,9 +9,9 @@ import com.funkyganesha.bean.Node;
 public interface Tree {
     void traversePreOrder(Tree tree);
 
-    void add(int value);
+    void insert(int value);
 
-    void delete(Node node);
+    void delete(int value);
 
-    Node search(int value);
+    boolean search(int value);
 }

@@ -6,13 +6,13 @@ import org.junit.Test;
 /**
  *
  */
-public class BinarySerachTreeTest {
+public class BinarySearchTreeTest {
     private Tree tree;
 
 
     @Before
     public void setUp() throws Exception {
-        tree = new BinarySerachTree();
+        tree = new BinarySearchTree();
     }
 
     @Test
