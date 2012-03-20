@@ -1,7 +1,8 @@
-package com.funkyganesha;
+package com.funkyganesha.tree;
 
 
-import com.funkyganesha.bean.Node;
+import com.funkyganesha.tree.bean.Node;
+import com.funkyganesha.tree.util.TreeUtils;
 
 /**
  * Unbalanced binary search tree
@@ -9,13 +10,7 @@ import com.funkyganesha.bean.Node;
 public class BinarySearchTree implements Tree {
     private Node root;
 
-    public void printInOrder(Node root) {
-        if (root != null) {
-            printInOrder(root.getLeftChild());
-            System.out.print(root.getValue() + "\t");
-            printInOrder(root.getRightChild());
-        }
-    }
+
 
     public void insert(int value) {
         if (root == null) {
@@ -43,30 +38,26 @@ public class BinarySearchTree implements Tree {
         return result;
     }
 
-    /**
-     * Yet to be implemented.
-     *
-     * @param value
-     * @return
-     */
     public boolean delete(int value) {
         boolean result = false;
         if (root != null) {
-            Node node = root;
+            Node current = root;
+            Node parent = root;
+
             for (; ; ) {
-                if (value == node.getValue()) {
+                if (value == current.getValue()) {
                     result = true;
-                    if (node.getRightChild() == null && node.getLeftChild() == null) {
-                        //This is a leaf node.
+                    if (current.getRightChild() == null && current.getLeftChild() == null) {
+                        //This is a leaf current.
 
                     }
                     break;
-                } else if (value < node.getValue()) {
-                    node = node.getLeftChild();
+                } else if (value < current.getValue()) {
+                    current = current.getLeftChild();
                 } else {
-                    node = node.getRightChild();
+                    current = current.getRightChild();
                 }
-                if (node == null) {
+                if (current == null) {
                     break;
                 }
             }
@@ -101,29 +92,35 @@ public class BinarySearchTree implements Tree {
         return result;
     }
 
-    public Node getRootNode() {
-        return root;
-    }
-
-    public int totalNumberOfNodes(Node root) {
+    public int countAllNodes(Node root) {
         if (root == null) {
             return 0;
         } else {
-            if (Node.isLeaf(root)) {
+            if (TreeUtils.isLeafNode(root)) {
                 return 1;
             } else {
-                return (1 + totalNumberOfNodes(root.getLeftChild()) + totalNumberOfNodes(root.getRightChild()));
+                return (1 + countAllNodes(root.getLeftChild()) + countAllNodes(root.getRightChild()));
             }
         }
     }
 
-    public int totalNumberOfLeafNodes(Node root) {
+    public int countLeafNodes(Node root) {
         if (root == null) {
             return 0;
-        } else if (Node.isLeaf(root)) {
+        } else if (TreeUtils.isLeafNode(root)) {
             return 1;
         } else {
-            return totalNumberOfLeafNodes(root.getLeftChild()) + totalNumberOfLeafNodes(root.getRightChild());
+            return countLeafNodes(root.getLeftChild()) + countLeafNodes(root.getRightChild());
         }
+    }
+
+    public void deleteTree() {
+        if (root != null) {
+            root = null;
+        }
+    }
+
+    public Node getRootNode() {
+        return root;
     }
 }

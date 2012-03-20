@@ -1,4 +1,4 @@
-package com.funkyganesha.bean;
+package com.funkyganesha.tree.bean;
 
 /**
  *
@@ -42,7 +42,14 @@ public class Node {
         this.rightChild = right;
     }
 
-    public static boolean isLeaf(Node node) {
-        return (node != null && node.getLeftChild() == null && node.getRightChild() == null) ? true : false;
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("Node");
+        sb.append("{value=").append(value);
+        sb.append(", leftChild=").append(leftChild);
+        sb.append(", rightChild=").append(rightChild);
+        sb.append("}");
+        return sb.toString();
     }
 }
