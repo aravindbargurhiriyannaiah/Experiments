@@ -22,7 +22,7 @@ public class UrlShortnerTest {
     }
 
     /**
-     * This test needs the database to be working - this is bad practice, will be mocking it shortly.
+     * This test needs the database to be working
      */
     @Ignore
     @Test
@@ -54,43 +54,4 @@ public class UrlShortnerTest {
     public void testShortenUrl_with_empty_input() throws UnknownHostException {
         assertNull(urlShortnerService.shortenUrl(""));
     }
-//    @Test
-//    public void testComputeShorterHash() {
-//        assertEquals("bc", UrlShortne.longValue()r.computeShorterHash(125));
-//    }
-//
-//    @Test
-//    public void testComputeShorterHash_with_negative_number() {
-//        assertNull("Should have been null as the input is a negative number", UrlShortnerServiceImpl.computeShorterHash(-1));
-//    }
-//
-//    @Test  (expected = NullPointerException.class)
-//    public void testInsertIntoDatabase_with_null_configuration() {
-//        mockStatic(UrlShortnerConfigReader.class);
-//        expect(UrlShortnerConfigReader.get()).andReturn(null);
-//        replayAll();
-//        assertNull(UrlShortnerServiceImpl.insertIntoDatabase("http://funkyganesha.com"));
-//        verifyAll();
-//    }
-//
-//    @Test
-//    public void testInsertIntoDatabase_with_valid_configuration() {
-//        assertNotNull(UrlShortnerServiceImpl.insertIntoDatabase("http://funkyganesha.com"));
-//    }
-//
-//    private UrlShortnerConfiguration constructLightLotusConfiguration() {
-//
-//        return null;
-//    }
-//
-//    @Test
-//    public void testInsertIntoDatabase_with_null_input() {
-//        assertNull(UrlShortnerServiceImpl.insertIntoDatabase(null));
-//    }
-//
-//
-//    @Test
-//    public void testInsertIntoDatabase_with_empty_input() {
-//        assertNull(UrlShortnerServiceImpl.insertIntoDatabase(""));
-//    }
 }

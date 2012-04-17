@@ -1,20 +1,31 @@
+package com.funkyganesha.percentage;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang.math.RandomUtils;
+
+import com.google.common.collect.Lists;
+
 public class Percentage {
-	    /**
+    /**
      * @param choices
-     * @return an ad network based on the associated percentage.
+     * @return an object based on the associated percentage.
      * @throws Exception
      */
-    public static AdNetwork randomlySelectAdNetwork(Map<AdNetwork, Double> choices) throws Exception {
-        AdNetwork result = null;
+    public static Object randomlySelectObject(Map<Object, Double> choices) throws Exception {
+        Object result = null;
         if (MapUtils.isNotEmpty(choices)) {
-            List<AdNetworkPercentages> adNetworkPercentagesList = constructPercentageList(choices);
-            if (CollectionUtils.isNotEmpty(adNetworkPercentagesList)) {
+            List<ObjectPercentages> objectPercentagesList = constructPercentageList(choices);
+            if (CollectionUtils.isNotEmpty(objectPercentagesList)) {
                 double randomNumber = RandomUtils.nextDouble() * 100;
                 double cumulative = 0.0;
-                for (AdNetworkPercentages adNetworkPercentages : adNetworkPercentagesList) {
-                    cumulative += adNetworkPercentages.getPercent();
+                for (ObjectPercentages objectPercentages : objectPercentagesList) {
+                    cumulative += objectPercentages.getPercent();
                     if (randomNumber < cumulative) {
-                        result = adNetworkPercentages.getAdNetwork();
+                        result = objectPercentages.getObject();
                         break;
                     }
                 }
@@ -23,39 +34,43 @@ public class Percentage {
         return result;
     }
 
-    private static List<AdNetworkPercentages> constructPercentageList(Map<AdNetwork, Double> choices) throws Exception {
-        List<AdNetworkPercentages> result = Lists.newArrayList();
+    private static List<ObjectPercentages> constructPercentageList(Map<Object, Double> choices) throws Exception {
+        List<ObjectPercentages> result = Lists.newArrayList();
         double sum = 0;
-        for (AdNetwork adNetwork : choices.keySet()) {
-            Double percent = choices.get(adNetwork);
-            result.add(new AdNetworkPercentages(adNetwork, percent));
+        for (Object object : choices.keySet()) {
+            Double percent = choices.get(object);
+            result.add(new ObjectPercentages(object, percent));
             sum += percent;
         }
         if (sum != 100.0) {
-            if (log.isDebugEnabled()) {
-                log.debug("Sum of all the ad network percentages should be 100. Currently it is " + sum);
-            }
-            result = null;
+            //Sum of all the ad network percentages should be 100.
         }
         return result;
     }
 
-    private static class AdNetworkPercentages {
-        private AdNetwork adNetwork;
+    private static class ObjectPercentages {
+        private Object object;
         private double percent;
 
-        private AdNetworkPercentages(AdNetwork adNetwork, double percent) {
-            this.adNetwork = adNetwork;
+        private ObjectPercentages(Object object, double percent) {
+            this.object = object;
             this.percent = percent;
         }
 
-        public AdNetwork getAdNetwork() {
-            return adNetwork;
+        public Object getObject() {
+            return object;
+        }
+
+        public void setObject(Object object) {
+            this.object = object;
         }
 
         public double getPercent() {
             return percent;
         }
 
+        public void setPercent(double percent) {
+            this.percent = percent;
+        }
     }
 }
