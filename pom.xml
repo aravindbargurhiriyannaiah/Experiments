@@ -12,7 +12,7 @@
     <module>LightLotus</module>
     <module>Dictionary</module>
     <module>tweeter</module>
-    <module>Utilities</module>
+    <module>utilities</module>
     <module>Url-Shortner</module>
   </modules>
 </project>
