@@ -1,9 +1,6 @@
 package com.funkyganesha.urlshortner.domain;
 
-import com.google.code.morphia.AbstractMongoEntity;
-import com.google.code.morphia.annotations.MongoID;
-
-public class UrlDetails extends AbstractMongoEntity {
+public class UrlDetails {
 
 
     private String id;

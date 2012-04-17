@@ -1,19 +1,25 @@
 package com.funkyganesha;
 
-import com.funkyganesha.urlshortner.UrlShortnerServiceImpl;
+import java.net.UnknownHostException;
+
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.net.UnknownHostException;
+import com.funkyganesha.urlshortner.UrlShortnerService;
+import com.funkyganesha.urlshortner.UrlShortnerServiceImpl;
 
-import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 
-
-
-
 public class UrlShortnerTest {
+
+    private UrlShortnerService urlShortnerService;
+
+    @Before
+    public void setup() {
+        urlShortnerService = new UrlShortnerServiceImpl();
+    }
 
     /**
      * This test needs the database to be working - this is bad practice, will be mocking it shortly.
@@ -22,7 +28,7 @@ public class UrlShortnerTest {
     @Test
     public void testShortenUrl() {
         try {
-            assertNotNull("The shorter URL should not be null", UrlShortnerServiceImpl.shortenUrl("http://funkyganesha.com"));
+            assertNotNull("The shorter URL should not be null", urlShortnerService.shortenUrl("http://funkyganesha.com"));
         } catch (UnknownHostException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
@@ -32,7 +38,7 @@ public class UrlShortnerTest {
     @Test
     public void testGetFullUrl() {
         try {
-            String url = UrlShortnerServiceImpl.getFullUrl("wEkgV237Mhi2tuSE");
+            String url = urlShortnerService.getFullUrl("wEkgV237Mhi2tuSE");
             assertNotNull("The returned URL should not be null", url);
         } catch (UnknownHostException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -41,12 +47,12 @@ public class UrlShortnerTest {
 
     @Test
     public void testShortenUrl_with_null_input() throws UnknownHostException {
-        assertNull(UrlShortnerServiceImpl.shortenUrl(null));
+        assertNull(urlShortnerService.shortenUrl(null));
     }
 
     @Test
     public void testShortenUrl_with_empty_input() throws UnknownHostException {
-        assertNull(UrlShortnerServiceImpl.shortenUrl(""));
+        assertNull(urlShortnerService.shortenUrl(""));
     }
 //    @Test
 //    public void testComputeShorterHash() {
