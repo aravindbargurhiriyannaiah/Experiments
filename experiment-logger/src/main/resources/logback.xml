@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!--
+                        %d{MMM-dd-yyyy @ HH:mm:ss} - date format - Eg. Jan-25-2012 @ 23:17:55
+                        [%thread] - thread name - Eg. [main]
+                        %logger - name of the logger printing this message - Eg. com.funkyganesha.MyApp
+                        %M - name of the method printing the log message - Eg. main - use only if execution speed is not an issue as this can be slow.
+                        %L - line number where the log statement was issued in the method - use only if execution speed is not an issue as this can be slow.
+                        %m - the actual message that was issued.
+                        %n - new line character
+                        -->
+            <Pattern>%d{MMM-dd-yyyy @ HH:mm:ss} [%thread] %logger "%m%n</Pattern>
+        </layout>
+    </appender>
+    <!-- log statements of this level and all the levels above it printed-->
+    <logger name="com.funkyganesha" level="TRACE"/>
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
