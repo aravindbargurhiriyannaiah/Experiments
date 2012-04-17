@@ -51,4 +51,30 @@ public class BinarySearchTreeTest {
         tree.deleteTree();
         assertEquals("Incorrect number of nodes in the tree", 0, TreeUtils.countAllNodes(tree.getRootNode()));
     }
+
+    @Test
+    public void testFindMin() {
+        int actualMin = tree.findMin();
+        assertEquals("Invalid minimum returned.", 2, actualMin);
+    }
+
+    @Test
+    public void testFindMinOnNullTree() {
+        tree.deleteTree();
+        int actualMin = tree.findMin();
+        assertEquals("Invalid minimum returned", -1, actualMin);
+    }
+
+    @Test
+    public void testFindMax() {
+        int actualMax = tree.findMax();
+        assertEquals("Invalid maximum returned", 4, actualMax);
+    }
+
+    @Test
+    public void testFindMaxOnNullTree() {
+        tree.deleteTree();
+        int actualMax = tree.findMax();
+        assertEquals("Invalid maximum returned", -1, actualMax);
+    }
 }

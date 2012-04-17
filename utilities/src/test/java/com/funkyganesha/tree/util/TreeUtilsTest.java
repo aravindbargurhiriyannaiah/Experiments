@@ -51,6 +51,7 @@ public class TreeUtilsTest {
      * @param tree
      */
     public static void createTestTree(Tree tree) {
+        tree.deleteTree();
         tree.insert(3);
         tree.insert(2);
         tree.insert(4);
@@ -66,6 +67,18 @@ public class TreeUtilsTest {
         tree.insert(3);
         tree.insert(7);
         tree.insert(15);
+        TreeUtils.displayTree(tree.getRootNode());
+    }
+
+    @Test
+    public void createTestTree() {
+        tree.deleteTree();
+        tree.insert(8);
+        tree.insert(6);
+        tree.insert(13);
+        tree.insert(13);
+        tree.insert(17);
+        tree.insert(17);
         TreeUtils.displayTree(tree.getRootNode());
     }
 

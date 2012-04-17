@@ -9,8 +9,7 @@ public interface Tree {
 
     /**
      * @param value
-     * @return
-     *      true if node with value was deleted; false otherwise
+     * @return true if node with value was deleted; false otherwise
      */
     boolean delete(int value);
 
@@ -19,8 +18,17 @@ public interface Tree {
     Node getRootNode();
 
     /**
-     * Deletes the entire tree.
+     * Delete all the nodes in the tree.
      */
     void deleteTree();
+
+    void deleteMin();
+
+    void deleteMax();
+
+    int findMin();
+
+    int findMax();
+
 
 }

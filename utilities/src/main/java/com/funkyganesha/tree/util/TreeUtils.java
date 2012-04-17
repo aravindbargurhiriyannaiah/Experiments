@@ -66,7 +66,7 @@ public class TreeUtils {
 
         int nBlanks = 12;
         boolean isRowEmpty = false;
-        System.out.println("......................................................");
+        System.out.println("-----------------------------------");
         while (isRowEmpty == false) {
             Stack localStack = new Stack();
             isRowEmpty = true;
@@ -97,6 +97,6 @@ public class TreeUtils {
                 globalStack.push(localStack.pop());
             }
         }  // end while isRowEmpty is false
-        System.out.println("......................................................");
+        System.out.println("-----------------------------------");
     }  // end displayTree()
 }
