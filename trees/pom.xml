@@ -8,9 +8,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>com.funkyganesha</groupId>
-    <artifactId>utilities</artifactId>
+    <artifactId>trees</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>utilities</name>
+    <name>trees</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -33,11 +33,6 @@
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
             <version>3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>3.0</version>
         </dependency>
     </dependencies>
 </project>

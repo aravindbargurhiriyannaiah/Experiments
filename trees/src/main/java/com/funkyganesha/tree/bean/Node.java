@@ -7,6 +7,7 @@ public class Node {
     private int value;
     private Node leftChild;
     private Node rightChild;
+    private Node parent;
 
     public Node(int value) {
         this.value = value;
@@ -16,6 +17,7 @@ public class Node {
         this.value = node.value;
         this.leftChild = node.getLeftChild();
         this.rightChild = node.getRightChild();
+        this.parent = node.getParent();
     }
 
     public int getValue() {
@@ -49,9 +51,16 @@ public class Node {
         sb.append("{value=").append(value);
         sb.append(", leftChild=").append(leftChild);
         sb.append(", rightChild=").append(rightChild);
-        sb.append("}");
+        sb.append(", parent=").append(parent);
+        sb.append('}');
         return sb.toString();
     }
 
+    public Node getParent() {
+        return parent;
+    }
 
+    public void setParent(Node parent) {
+        this.parent = parent;
+    }
 }

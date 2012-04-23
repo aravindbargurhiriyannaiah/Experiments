@@ -12,7 +12,7 @@ To create a module under the multi-module maven project / parent project, do the
 1. clone the github project, Experiments
 2. cd Experiments
 3. mvn archetype:generate
-4. In my setup, 171, is the number you ought to select for a simple maven project (remote -> org.apache.maven.archetypes:maven-archetype-quickstart (An archetype which contains a sample Maven project.))
+4. It usually points to a number which indicates this kind of maven project (remote -> org.apache.maven.archetypes:maven-archetype-quickstart (An archetype which contains a sample Maven project.). If you are not sure, just press enter. Else go through the list and select an appropriate one.
 5. You will be presented with the following prompts. Please enter the information as shown below (or something else if desired)
 	a. Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): 171: 
 	b. Choose org.apache.maven.archetypes:maven-archetype-quickstart version: 5: 1.0

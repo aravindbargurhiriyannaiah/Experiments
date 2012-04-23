@@ -15,5 +15,6 @@
     <module>tweeter</module>
     <module>utilities</module>
     <module>url-shortner</module>
+    <module>trees</module>
   </modules>
 </project>
