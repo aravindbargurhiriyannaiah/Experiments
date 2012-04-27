@@ -17,9 +17,6 @@ import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 
-/**
- *
- */
 public class BinarySearchTreeTest {
     private Tree tree;
 
@@ -168,8 +165,11 @@ public class BinarySearchTreeTest {
     @Test
     public void testFindMin() {
         Node min = tree.findMin(tree.getRootNode());
+        Node min1 = tree.findMin();
         assertNotNull("The return value should not be null", min);
+        assertNotNull("The return value should not be null", min1);
         assertEquals("Invalid minimum returned.", 2, min.getValue());
+        assertEquals("Invalid minimum returned.", 2, min1.getValue());
     }
 
     @Test
@@ -182,8 +182,11 @@ public class BinarySearchTreeTest {
     @Test
     public void testFindMax() {
         Node max = tree.findMax(tree.getRootNode());
+        Node max1 = tree.findMax();
         assertNotNull("The return value should not be null", max);
+        assertNotNull("The return value should not be null", max1);
         assertEquals("Invalid maximum returned", 4, max.getValue());
+        assertEquals("Invalid maximum returned", 4, max1.getValue());
     }
 
     @Test
@@ -273,5 +276,70 @@ public class BinarySearchTreeTest {
         tree.deleteTree();
         Node nextSmaller = tree.findNextSmaller(1);
         assertNull("There is no tree. Should have been null", nextSmaller);
+    }
+
+    @Test
+    public void testDeleteMin() {
+        boolean result = tree.deleteMin();
+        assertTrue("Should be true as the min node was deleted.", result);
+        Node node = tree.find(2);
+        assertNull("The node should not have been found", node);
+        assertEquals("Invalid number of nodes in the tree", 2, TreeUtils.countAllNodes(tree.getRootNode()));
+    }
+
+    @Test
+    public void testDeleteMax() {
+        boolean b = tree.deleteMax();
+        assertTrue("Should be true as the max node was deleted.", b);
+        Node node = tree.find(4);
+        assertNull("The node should have been found.", node);
+        assertEquals("Incorrect number of nodes in the tree.", 2, TreeUtils.countAllNodes(tree.getRootNode()));
+    }
+
+    @Test
+    public void testDeleteMinWithNode() {
+        tree.deleteTree();
+        List<Integer> integers = Lists.newArrayList(23, 8, 4, 16, 15, 42);
+        tree.insert(integers);
+        boolean b = tree.deleteMin(tree.find(8));
+        assertTrue("Should be true as the min node was deleted.", b);
+        Node node = tree.find(4);
+        assertNull("Node should not have been found", node);
+        assertEquals("Incorrect number of nodes.", integers.size() - 1, TreeUtils.countAllNodes(tree.getRootNode()));
+
+    }
+
+    @Test
+    public void testDeleteMaxWithNode() {
+        tree.deleteTree();
+        List<Integer> integers = Lists.newArrayList(23, 8, 4, 16, 15, 42);
+        tree.insert(integers);
+        boolean b = tree.deleteMax(tree.find(8));
+        assertTrue("Should be true as the max node was deleted.", b);
+        Node node = tree.find(16);
+        assertNull("Node should not have been found", node);
+        assertEquals("Incorrect number of nodes.", integers.size() - 1, TreeUtils.countAllNodes(tree.getRootNode()));
+    }
+
+    @Test
+    public void testDeleteDuplicateNodesWithNoDuplicates() {
+        tree.deleteDuplicateNodes();
+        assertEquals("Incorrect number of nodes", 3, TreeUtils.countAllNodes(tree.getRootNode()));
+    }
+
+    @Test
+    public void testDeleteDuplicateNodes() {
+        tree.deleteTree();
+        List<Integer> integers = Lists.newArrayList(23, 8, 8, 4, 16, 16, 15, 42, 42);
+        tree.insert(integers);
+        tree.deleteDuplicateNodes();
+        assertEquals("Incorrect number of nodes", integers.size() - 3, TreeUtils.countAllNodes(tree.getRootNode()));
+    }
+
+    @Test
+    public void testDeleteDuplicateNodesOnNullTree(){
+        tree.deleteTree();
+        tree.deleteDuplicateNodes();
+        assertNull("The root node should be null as it has been deleted.", tree.getRootNode());
     }
 }

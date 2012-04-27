@@ -24,14 +24,27 @@ public interface Tree {
      */
     void deleteTree();
 
-    void deleteMin();
+    /**
+     * Find the min in the tree from the root.
+     *
+     * @return
+     */
+    Node findMin();
 
-    void deleteMax();
-
-    Node findMin(Node root);
+    Node findMax();
 
     /**
-     * The parameter passed need not be the root node. It can be a node at any level in the subtree.
+     * At worst case the traversal goes the longest branch. The worst case complexity would be O(h) where h is  the height of the tree.
+     *
+     * @param node
+     * @return
+     */
+    Node findMin(Node node);
+
+    /**
+     * The parameter passed need not be the root node. It can be a node at any level in the sub-tree. At worst case the traversal goes the longest branch.
+     * The worst case complexity would be O(h) where h is  the height of the tree.
+     *
      * @param node - node from where the max will be returned.
      * @return the node with maximum value
      */
@@ -41,6 +54,7 @@ public interface Tree {
 
     /**
      * Given a value, find that node which has the next larger value in the tree.
+     *
      * @param value
      * @return
      */
@@ -48,8 +62,41 @@ public interface Tree {
 
     /**
      * Given a value, find that node which has the next smaller value in the tree.
+     *
      * @param value
      * @return
      */
     Node findNextSmaller(int value);
+
+    /**
+     * Delete the node with largest value in the sub-tree from the provided argument
+     *
+     * @param node
+     * @return true if deleted, false otherwise
+     */
+    boolean deleteMax(Node node);
+
+    /**
+     * Delete the node with smallest value in the sub-tree from the provided argument
+     *
+     * @param node
+     * @return true if deleted, false otherwise
+     */
+    boolean deleteMin(Node node);
+
+    /**
+     * Delete the node with smallest value in the tree.
+     *
+     * @return true if deleted, false otherwise
+     */
+    boolean deleteMin();
+
+    /**
+     * Delete the node with largest value in the tree.
+     *
+     * @return true if deleted, false otherwise
+     */
+    boolean deleteMax();
+
+    void deleteDuplicateNodes();
 }

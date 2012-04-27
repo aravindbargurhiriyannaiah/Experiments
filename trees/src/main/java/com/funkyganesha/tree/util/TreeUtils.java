@@ -1,5 +1,6 @@
 package com.funkyganesha.tree.util;
 
+import java.util.Map;
 import java.util.Stack;
 
 import com.funkyganesha.tree.bean.Node;
@@ -52,6 +53,15 @@ public class TreeUtils {
             traversePostOrder(root.getRightChild());
             System.out.println(root + "\n");
         }
+    }
+
+    public static int countNodesAtEachLevel(Node node) {
+        Node x = node;
+        Map<Integer, Integer> countMap = null;
+        if (x != null) {
+
+        }
+        return -1;
     }
 
     public static boolean isLeafNode(Node node) {

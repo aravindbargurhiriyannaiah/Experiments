@@ -44,7 +44,7 @@ public class BinarySearchTree implements Tree {
             //insert the node
             node.getParent().setLeftChild(node);
         } else {
-            //insert the node
+            //insert the node. This is a property that we will use while deleting duplicates. A duplicate node will always be on the right sub-tree of a node.
             node.getParent().setRightChild(node);
         }
     }
@@ -162,24 +162,69 @@ public class BinarySearchTree implements Tree {
         }
     }
 
-    public void removeDuplicates() {
-
+    @Override
+    public void deleteDuplicateNodes() {
+        Node x = getRootNode();
+        if (x != null) {
+            deleteDuplicateNodes(x);
+        }
     }
 
-    public void deleteMin() {
-
+    //Traverse the tree and delete the node if it is a duplicate. Owing to the way the nodes are inserted, the duplicate node will always be on the right tree.
+    private void deleteDuplicateNodes(Node node) {
+        if (node != null) {
+            deleteDuplicateNodes(node.getLeftChild());
+            deleteDuplicateNodes(node.getRightChild());
+            if (!TreeUtils.isLeafNode(node) && (node.getRightChild() != null)) {
+                if (node.getValue() == node.getRightChild().getValue()) {
+                    delete(node.getValue());
+                }
+            }
+        }
     }
 
-    public void deleteMax() {
-
+    @Override
+    public boolean deleteMin() {
+        Node min = findMin();
+        return deleteMin(min);
     }
 
-    /**
-     * At worst case the traversal goes the longest branch. The worst case complexity would be O(h) where h is  the height of the tree.
-     *
-     * @param node
-     * @return
-     */
+    @Override
+    public boolean deleteMin(Node node) {
+        Node x = node;
+        if (x != null) {
+            Node min = findMin(x);
+            if (min != null) {
+                return delete(min.getValue());
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteMax() {
+        Node max = findMax();
+        return deleteMax(max);
+    }
+
+    @Override
+    public boolean deleteMax(Node node) {
+        Node x = node;
+        if (x != null) {
+            Node max = findMax(x);
+            if (max != null) {
+                return delete(max.getValue());
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Node findMin() {
+        Node x = root;
+        return findMin(x);
+    }
+
     @Override
     public Node findMin(Node node) {
         Node x = node;
@@ -192,12 +237,12 @@ public class BinarySearchTree implements Tree {
         return x;
     }
 
-    /**
-     * * At worst case the traversal goes the longest branch. The worst case complexity would be O(h) where h is  the height of the tree.
-     *
-     * @param node - node from where the max will be returned.
-     * @return
-     */
+    @Override
+    public Node findMax() {
+        Node x = root;
+        return findMax(x);
+    }
+
     @Override
     public Node findMax(Node node) {
         Node x = node;
