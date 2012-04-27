@@ -18,7 +18,9 @@ public class PercentageTest {
         Map<Object, Double> objectChoices = populateTestObjectPercentage();
         Map<Object, Double> objectCounts = Maps.newHashMap();
         for (int i = 0; i < NO_OF_TIMES; i++) {
-            Object result = Percentage.randomlySelectObject(objectChoices);
+            Object result = Percentage.selectRandomly(objectChoices);
+            Map<String, Double> m = Maps.newHashMap();
+            Percentage.selectRandomly(m);
             addIntoMap(result, objectCounts);
         }
         Map<Object, Double> result = computePercentages(objectCounts);

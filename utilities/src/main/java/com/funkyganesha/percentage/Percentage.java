@@ -15,8 +15,8 @@ public class Percentage {
      * @return an object based on the associated percentage.
      * @throws Exception
      */
-    public static Object randomlySelectObject(Map<Object, Double> choices) throws Exception {
-        Object result = null;
+    public static <K> K selectRandomly(Map<K, Double> choices) throws Exception {
+        K result = null;
         if (MapUtils.isNotEmpty(choices)) {
             List<ObjectPercentages> objectPercentagesList = constructPercentageList(choices);
             if (CollectionUtils.isNotEmpty(objectPercentagesList)) {
@@ -25,7 +25,7 @@ public class Percentage {
                 for (ObjectPercentages objectPercentages : objectPercentagesList) {
                     cumulative += objectPercentages.getPercent();
                     if (randomNumber < cumulative) {
-                        result = objectPercentages.getObject();
+                        result = (K) objectPercentages.getK();
                         break;
                     }
                 }
@@ -34,12 +34,12 @@ public class Percentage {
         return result;
     }
 
-    private static List<ObjectPercentages> constructPercentageList(Map<Object, Double> choices) throws Exception {
+    private static <K> List<ObjectPercentages> constructPercentageList(Map<K, Double> choices) throws Exception {
         List<ObjectPercentages> result = Lists.newArrayList();
         double sum = 0;
-        for (Object object : choices.keySet()) {
-            Double percent = choices.get(object);
-            result.add(new ObjectPercentages(object, percent));
+        for (K k : choices.keySet()) {
+            Double percent = choices.get(k);
+            result.add(new ObjectPercentages(k, percent));
             sum += percent;
         }
         if (sum != 100.0) {
@@ -48,21 +48,21 @@ public class Percentage {
         return result;
     }
 
-    private static class ObjectPercentages {
-        private Object object;
+    private static class ObjectPercentages<K> {
+        private K k;
         private double percent;
 
-        private ObjectPercentages(Object object, double percent) {
-            this.object = object;
+        public ObjectPercentages(K k, double percent) {
+            this.k = k;
             this.percent = percent;
         }
 
-        public Object getObject() {
-            return object;
+        public K getK() {
+            return k;
         }
 
-        public void setObject(Object object) {
-            this.object = object;
+        public void setK(K k) {
+            this.k = k;
         }
 
         public double getPercent() {
