@@ -116,7 +116,7 @@ public class TreeUtils {
 
     public static void traversePostOrder(Node node) {
         if (node != null) {
-            traversePostOrder(node);
+            traversePostOrder(node.getLeftChild());
             traversePostOrder(node.getRightChild());
             System.out.println(node + "\n");
         }
