@@ -1,6 +1,5 @@
 package com.funkyganesha.tree;
 
-
 import java.util.List;
 
 import com.funkyganesha.tree.bean.Node;
@@ -98,5 +97,14 @@ public interface Tree {
      */
     boolean deleteMax();
 
+    /**
+     * Delete all duplicate nodes in the tree.
+     */
     void deleteDuplicateNodes();
+
+    /**
+     * Delete all duplicate nodes in the sub-tree for which node is the root.
+     * @param node
+     */
+    void deleteDuplicateNodes(Node node);
 }

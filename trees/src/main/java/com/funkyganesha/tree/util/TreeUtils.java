@@ -1,67 +1,125 @@
 package com.funkyganesha.tree.util;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Stack;
 
 import com.funkyganesha.tree.bean.Node;
 
-/**
- *
- */
 public class TreeUtils {
-    public static int countAllNodes(Node root) {
-        if (root == null) {
+    public static int countNodesAtLevel(int level) {
+        int noOfNodes = -1;
+        return noOfNodes;
+    }
+
+    public static List<Node> findNodesAtLevel(int level) {
+        List<Node> nodes = null;
+        return nodes;
+    }
+
+    /**
+     * The depth of a tree is the depth of its deepest node (also called as height of a node)
+     * <ol> Taken from http://cs.nyu.edu/courses/fall02/V22.0310-002/lectures/lecture-08.html
+     *     <li>The height of a leaf is 0.</li>
+     *     <li>The height of an internal node v is 1 plus the maximum height of the children of v.</li>
+     *     <li>The height of a tree is the height of the root.</li>
+     * </ol>
+     *
+     * @param node
+     * @return the length of the longest downward path to a leaf from this node.
+     */
+    public static int heightOfANode(Node node) {
+        if (node == null || TreeUtils.isLeafNode(node)) {
             return 0;
         } else {
-            if (isLeafNode(root)) {
+            return 1 + Math.max(heightOfANode(node.getLeftChild()), heightOfANode(node.getRightChild()));
+        }
+    }
+
+    /**
+     * The depth of the node is its distance from the root.
+     * <ol>
+     *     <li>The depth of the root is 0.</li>
+     *     <li>The depth of a node is 1 plus the depth of node's parent.</li>
+     * </ol>
+     * @param node
+     * @return The length of the path from node to the root node.
+     */
+    public static int depthOfANode(Node node) {
+        if (node == null || node.getParent() == null) {
+            return 0;
+        } else {
+            return 1 + depthOfANode(node.getParent());
+        }
+    }
+
+    /**
+     * Traverse the tree in post order and copy the entire tree.
+     * @param node
+     * @return
+     */
+    public static Node copyTree(Node node) {
+        if (node == null) {
+            return null;
+        }
+        copyTree(node.getLeftChild());
+        copyTree(node.getRightChild());
+        return new Node(node);
+    }
+
+    /**
+     *
+     * @param node
+     * @return the total number of nodes in the tree.
+     */
+    public static int size(Node node) {
+        if (node == null) {
+            return 0;
+        } else {
+            if (isLeafNode(node)) {
                 return 1;
             } else {
-                return (1 + countAllNodes(root.getLeftChild()) + countAllNodes(root.getRightChild()));
+                return (1 + size(node.getLeftChild()) + size(node.getRightChild()));
             }
         }
     }
 
-    public static int countLeafNodes(Node root) {
-        if (root == null) {
+    /**
+     *
+     * @param node
+     * @return total number of leaf nodes in the tree.
+     */
+    public static int countLeafNodes(Node node) {
+        if (node == null) {
             return 0;
-        } else if (isLeafNode(root)) {
+        } else if (isLeafNode(node)) {
             return 1;
         } else {
-            return countLeafNodes(root.getLeftChild()) + countLeafNodes(root.getRightChild());
+            return countLeafNodes(node.getLeftChild()) + countLeafNodes(node.getRightChild());
         }
     }
 
-    public static void traverseInOrder(Node root) {
-        if (root != null) {
-            traverseInOrder(root.getLeftChild());
-            System.out.print(root + "\n");
-            traverseInOrder(root.getRightChild());
+    public static void traverseInOrder(Node node) {
+        if (node != null) {
+            traverseInOrder(node.getLeftChild());
+            System.out.print(node + "\n");
+            traverseInOrder(node.getRightChild());
         }
     }
 
-    public static void traversePreOrder(Node root) {
-        if (root != null) {
-            System.out.println(root + "\n");
-            traversePreOrder(root.getLeftChild());
-            traversePreOrder(root.getRightChild());
+    public static void traversePreOrder(Node node) {
+        if (node != null) {
+            System.out.println(node + "\n");
+            traversePreOrder(node.getLeftChild());
+            traversePreOrder(node.getRightChild());
         }
     }
 
-    public static void traversePostOrder(Node root) {
-        if (root != null) {
-            traversePostOrder(root);
-            traversePostOrder(root.getRightChild());
-            System.out.println(root + "\n");
+    public static void traversePostOrder(Node node) {
+        if (node != null) {
+            traversePostOrder(node);
+            traversePostOrder(node.getRightChild());
+            System.out.println(node + "\n");
         }
-    }
-
-    public static int countNodesAtEachLevel(Node node) {
-        Node x = node;
-        Map<Integer, Integer> countMap = null;
-        if (x != null) {
-
-        }
-        return -1;
     }
 
     public static boolean isLeafNode(Node node) {
@@ -73,8 +131,7 @@ public class TreeUtils {
         globalStack.push(root);
         //If it is a large tree, increase nBlanks to a larger number. For 3 - 7 nodes, 12 is good enough
         //int nBlanks = 32;
-
-        int nBlanks = 12;
+        int nBlanks = 32;
         boolean isRowEmpty = false;
         System.out.println("-----------------------------------");
         while (isRowEmpty == false) {

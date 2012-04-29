@@ -9,10 +9,17 @@ import com.funkyganesha.tree.bean.Node;
 import com.funkyganesha.tree.util.TreeUtils;
 
 /**
- * Unbalanced binary search tree - implemented based on http://courses.csail.mit.edu/6.006/spring11/rec/rec03.pdf
+ * Unbalanced sorted binary search tree - implemented based on http://courses.csail.mit.edu/6.006/spring11/rec/rec03.pdf
  */
 public class BinarySearchTree implements Tree {
     private Node root;
+
+    public BinarySearchTree() {
+    }
+
+    public BinarySearchTree(Node root) {
+        this.root = root;
+    }
 
     @Override
     public void insert(List<Integer> integers) {
@@ -170,12 +177,13 @@ public class BinarySearchTree implements Tree {
         }
     }
 
-    //Traverse the tree and delete the node if it is a duplicate. Owing to the way the nodes are inserted, the duplicate node will always be on the right tree.
-    private void deleteDuplicateNodes(Node node) {
+    @Override
+    public void deleteDuplicateNodes(Node node) {
         if (node != null) {
             deleteDuplicateNodes(node.getLeftChild());
             deleteDuplicateNodes(node.getRightChild());
             if (!TreeUtils.isLeafNode(node) && (node.getRightChild() != null)) {
+                // Owing to the way the nodes are inserted (into a sorted binary search tree), if there is a duplicate, it will be the node's right child.
                 if (node.getValue() == node.getRightChild().getValue()) {
                     delete(node.getValue());
                 }

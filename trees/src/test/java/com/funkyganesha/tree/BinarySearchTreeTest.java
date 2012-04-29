@@ -28,7 +28,7 @@ public class BinarySearchTreeTest {
 
     @Test
     public void testInsert() {
-        assertEquals("Incorrect number of nodes in the tree.", 3, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Incorrect number of nodes in the tree.", 3, TreeUtils.size(tree.getRootNode()));
     }
 
     @Test
@@ -117,7 +117,7 @@ public class BinarySearchTreeTest {
         tree.insert(integers);
         boolean delete = tree.delete(18);
         assertTrue("Node should have been deleted", delete);
-        assertEquals("Incorrect number of nodes in tree.", integers.size() - 1, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Incorrect number of nodes in tree.", integers.size() - 1, TreeUtils.size(tree.getRootNode()));
         Node node = tree.find(18);
         assertNull("Node should have been deleted. It should be null.", node);
     }
@@ -129,7 +129,7 @@ public class BinarySearchTreeTest {
         tree.insert(integers);
         boolean delete = tree.delete(12);
         assertTrue("Node should have been deleted", delete);
-        assertEquals("Incorrect number of nodes in tree.", integers.size() - 1, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Incorrect number of nodes in tree.", integers.size() - 1, TreeUtils.size(tree.getRootNode()));
         Node node = tree.find(12);
         assertNull("Node should have been deleted. It should be null.", node);
     }
@@ -141,7 +141,7 @@ public class BinarySearchTreeTest {
         tree.insert(integers);
         boolean delete = tree.delete(13);
         assertTrue("Node should have been deleted", delete);
-        assertEquals("Incorrect number of nodes in tree.", integers.size() - 1, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Incorrect number of nodes in tree.", integers.size() - 1, TreeUtils.size(tree.getRootNode()));
         Node node = tree.find(13);
         assertNull("Node should have been deleted. It should be null.", node);
     }
@@ -150,16 +150,16 @@ public class BinarySearchTreeTest {
     public void testDeleteOnRoot() {
         boolean delete = tree.delete(3);
         assertTrue("The root node should have been deleted", delete);
-        assertEquals("Incorrect number of nodes", 2, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Incorrect number of nodes", 2, TreeUtils.size(tree.getRootNode()));
         assertNotNull("The root node should not be null", tree.getRootNode());
     }
 
     @Test
     public void testDeleteEntireTree() {
-        assertEquals("Incorrect number of nodes in the tree.", 3, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Incorrect number of nodes in the tree.", 3, TreeUtils.size(tree.getRootNode()));
         tree.deleteTree();
         assertNull("The root node should have been null", tree.getRootNode());
-        assertEquals("Incorrect number of nodes in the tree", 0, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Incorrect number of nodes in the tree", 0, TreeUtils.size(tree.getRootNode()));
     }
 
     @Test
@@ -284,7 +284,7 @@ public class BinarySearchTreeTest {
         assertTrue("Should be true as the min node was deleted.", result);
         Node node = tree.find(2);
         assertNull("The node should not have been found", node);
-        assertEquals("Invalid number of nodes in the tree", 2, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Invalid number of nodes in the tree", 2, TreeUtils.size(tree.getRootNode()));
     }
 
     @Test
@@ -293,7 +293,7 @@ public class BinarySearchTreeTest {
         assertTrue("Should be true as the max node was deleted.", b);
         Node node = tree.find(4);
         assertNull("The node should have been found.", node);
-        assertEquals("Incorrect number of nodes in the tree.", 2, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Incorrect number of nodes in the tree.", 2, TreeUtils.size(tree.getRootNode()));
     }
 
     @Test
@@ -305,7 +305,7 @@ public class BinarySearchTreeTest {
         assertTrue("Should be true as the min node was deleted.", b);
         Node node = tree.find(4);
         assertNull("Node should not have been found", node);
-        assertEquals("Incorrect number of nodes.", integers.size() - 1, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Incorrect number of nodes.", integers.size() - 1, TreeUtils.size(tree.getRootNode()));
 
     }
 
@@ -318,13 +318,13 @@ public class BinarySearchTreeTest {
         assertTrue("Should be true as the max node was deleted.", b);
         Node node = tree.find(16);
         assertNull("Node should not have been found", node);
-        assertEquals("Incorrect number of nodes.", integers.size() - 1, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Incorrect number of nodes.", integers.size() - 1, TreeUtils.size(tree.getRootNode()));
     }
 
     @Test
     public void testDeleteDuplicateNodesWithNoDuplicates() {
         tree.deleteDuplicateNodes();
-        assertEquals("Incorrect number of nodes", 3, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Incorrect number of nodes", 3, TreeUtils.size(tree.getRootNode()));
     }
 
     @Test
@@ -333,7 +333,7 @@ public class BinarySearchTreeTest {
         List<Integer> integers = Lists.newArrayList(23, 8, 8, 4, 16, 16, 15, 42, 42);
         tree.insert(integers);
         tree.deleteDuplicateNodes();
-        assertEquals("Incorrect number of nodes", integers.size() - 3, TreeUtils.countAllNodes(tree.getRootNode()));
+        assertEquals("Incorrect number of nodes", integers.size() - 3, TreeUtils.size(tree.getRootNode()));
     }
 
     @Test
@@ -341,5 +341,15 @@ public class BinarySearchTreeTest {
         tree.deleteTree();
         tree.deleteDuplicateNodes();
         assertNull("The root node should be null as it has been deleted.", tree.getRootNode());
+    }
+
+    @Test
+    public void testDeleteDuplicateNodesInSubTree() {
+        tree.deleteTree();
+        List<Integer> integers = Lists.newArrayList(23, 8, 8, 4, 16, 16, 15, 42, 42);
+        tree.insert(integers);
+        Node node = tree.find(8);
+        tree.deleteDuplicateNodes(node);
+        assertEquals("Incorrect number of nodes", integers.size() - 2, TreeUtils.size(tree.getRootNode()));
     }
 }
