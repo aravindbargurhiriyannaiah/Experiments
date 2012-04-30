@@ -157,4 +157,94 @@ public class TreeUtilsTest {
         Node node = TreeUtils.copyTree(null);
         assertNull("The new tree root should have been null", node);
     }
+
+    @Test
+    public void testCountNodesAtLevelGreaterThanHeightOfTree() {
+        int noOfNodes = TreeUtils.countNodesAtLevel(100, tree.getRootNode());
+        assertEquals("Incorrect number of nodes returned for level [" + 100 + "] ", 0, noOfNodes);
+    }
+
+    @Test
+    public void testCountNodesAtLevelLessThanZero() {
+        int noOfNodes = TreeUtils.countNodesAtLevel(-1, tree.getRootNode());
+        assertEquals("Incorrect number of nodes returned for level [" + -1 + "] ", 0, noOfNodes);
+    }
+
+    @Test
+    public void testCountNodesAtLevelWithNodeAsNull() {
+        int noOfNodes = TreeUtils.countNodesAtLevel(1, null);
+        assertEquals("Incorrect number of nodes returned for level [" + 1 + "]", 0, noOfNodes);
+    }
+
+    @Test
+    public void testCountNodesAtLevelLargerTree() {
+        int level = 0;
+        int noOfNodes = TreeUtils.countNodesAtLevel(level, tree.getRootNode());
+        assertEquals("Incorrect number of nodes returned for level [" + level + "] ", 1, noOfNodes);
+        tree.deleteTree();
+        List<Integer> integerList = Lists.newArrayList(8, 3, 10, 1, 6, 4, 7, 14, 13);
+        tree.insert(integerList);
+        TreeUtils.displayTree(tree.getRootNode());
+        level = 2;
+        noOfNodes = TreeUtils.countNodesAtLevel(level, tree.getRootNode());
+        assertEquals("Incorrect number of nodes returned for level [" + level + "] ", 3, noOfNodes);
+        level = 3;
+        noOfNodes = TreeUtils.countNodesAtLevel(level, tree.getRootNode());
+        assertEquals("Incorrect number of nodes returned for level [" + level + "] ", 3, noOfNodes);
+    }
+
+    @Test
+    public void testFindNodesAtAllLevelsOfSmallTree() {
+        int level = 0;
+        List<Node> nodesAtLevel = TreeUtils.findNodesAtLevel(level, tree.getRootNode());
+        assertNotNull("The list of nodes should not be null", nodesAtLevel);
+        assertEquals("Incorrect number of nodes at level [" + level + "] ", 1, nodesAtLevel.size());
+        assertEquals("Invalid node returned for level [" + level + "] ", 3, nodesAtLevel.get(0).getValue());
+        nodesAtLevel = TreeUtils.findNodesAtLevel(1, tree.getRootNode());
+        assertNotNull("The list of nodes should not be null", nodesAtLevel);
+        assertEquals("Incorrect number of nodes at level [" + level + "] ", 2, nodesAtLevel.size());
+        assertEquals("Invalid node returned for level [" + level + "] ", 2, nodesAtLevel.get(0).getValue());
+        assertEquals("Invalid node returned for level [" + level + "] ", 4, nodesAtLevel.get(1).getValue());
+    }
+
+    @Test
+    public void testFindNodesAtLevelWithInvalidLevel() {
+        int level = 10;
+        List<Node> nodesAtLevel = TreeUtils.findNodesAtLevel(level, tree.getRootNode());
+        assertNotNull("The list of nodes should not be n ull", nodesAtLevel);
+        assertEquals("Incorrect number of nodes at level [" + level + "] ", 0, nodesAtLevel.size());
+    }
+
+    @Test
+    public void testFindNodesAtLevelOfLargeTree() {
+        tree.deleteTree();
+        List<Integer> integerList = Lists.newArrayList(8, 3, 10, 1, 6, 4, 7, 14, 13);
+        tree.insert(integerList);
+
+        //find node at root.
+        int level = 0;
+        List<Node> nodesAtLevel = TreeUtils.findNodesAtLevel(level, tree.getRootNode());
+        assertEquals("Incorrect number of nodes at level [" + level + "] ", 1, nodesAtLevel.size());
+        assertEquals("Invalid node returned for level [" + level + "] ", 8, nodesAtLevel.get(0).getValue());
+        
+        level = 1;
+        nodesAtLevel = TreeUtils.findNodesAtLevel(level, tree.getRootNode());
+        assertEquals("Incorrect number of nodes at level [" + level + "] ", 2, nodesAtLevel.size());
+        assertEquals("Invalid node returned for level [" + level + "] ", 3, nodesAtLevel.get(0).getValue());
+        assertEquals("Invalid node returned for level [" + level + "] ", 10, nodesAtLevel.get(1).getValue());
+
+        level = 2;
+        nodesAtLevel = TreeUtils.findNodesAtLevel(level, tree.getRootNode());
+        assertEquals("Incorrect number of nodes at level [" + level + "] ", 3, nodesAtLevel.size());
+        assertEquals("Invalid node returned for level [" + level + "] ", 1, nodesAtLevel.get(0).getValue());
+        assertEquals("Invalid node returned for level [" + level + "] ", 6, nodesAtLevel.get(1).getValue());
+        assertEquals("Invalid node returned for level [" + level + "] ", 14, nodesAtLevel.get(2).getValue());
+
+        level = 3;
+        nodesAtLevel = TreeUtils.findNodesAtLevel(level, tree.getRootNode());
+        assertEquals("Incorrect number of nodes at level [" + level + "] ", 3, nodesAtLevel.size());
+        assertEquals("Invalid node returned for level [" + level + "] ", 4, nodesAtLevel.get(0).getValue());
+        assertEquals("Invalid node returned for level [" + level + "] ", 7, nodesAtLevel.get(1).getValue());
+        assertEquals("Invalid node returned for level [" + level + "] ", 13, nodesAtLevel.get(2).getValue());
+    }
 }

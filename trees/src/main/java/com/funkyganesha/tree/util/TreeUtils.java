@@ -4,24 +4,56 @@ import java.util.List;
 import java.util.Stack;
 
 import com.funkyganesha.tree.bean.Node;
+import com.google.common.collect.Lists;
 
 public class TreeUtils {
-    public static int countNodesAtLevel(int level) {
-        int noOfNodes = -1;
+    /**
+     * level = 0 means the root node.
+     * @param level
+     * @param node
+     * @return <ol><li>The number of nodes at a given level.</li>
+     *         <li>-1 if the level is greater than the height of the root or the root is null.</li></ol>
+     */
+    public static int countNodesAtLevel(int level, Node node) {
+        int noOfNodes = 0;
+        int heightOfTheTree = heightOfANode(node);
+        if (heightOfTheTree >= level && node != null & level >= 0) {
+            level -= 1;
+            if (level == -1) {
+                noOfNodes++;
+            }
+            noOfNodes += countNodesAtLevel(level, node.getLeftChild());
+            noOfNodes += countNodesAtLevel(level, node.getRightChild());
+        }
         return noOfNodes;
     }
 
-    public static List<Node> findNodesAtLevel(int level) {
-        List<Node> nodes = null;
+    /**
+     * level = 0 means the root node. The nodes in the list will be from left to right.
+     * @param level
+     * @param node
+     * @return A list of all the nodes found at a given level. Empty list if none are found.
+     */
+    public static List<Node> findNodesAtLevel(int level, Node node) {
+        List<Node> nodes = Lists.newArrayList();
+        int heightOfTheTree = heightOfANode(node);
+        if (heightOfTheTree >= level && node != null && level >= 0) {
+            level -= 1;
+            if (level == -1) {
+                nodes.add(node);
+            }
+            nodes.addAll(findNodesAtLevel(level, node.getLeftChild()));
+            nodes.addAll(findNodesAtLevel(level, node.getRightChild()));
+        }
         return nodes;
     }
 
     /**
      * The depth of a tree is the depth of its deepest node (also called as height of a node)
-     * <ol> Taken from http://cs.nyu.edu/courses/fall02/V22.0310-002/lectures/lecture-08.html
-     *     <li>The height of a leaf is 0.</li>
-     *     <li>The height of an internal node v is 1 plus the maximum height of the children of v.</li>
-     *     <li>The height of a tree is the height of the root.</li>
+     * <ol> Definitions taken from http://cs.nyu.edu/courses/fall02/V22.0310-002/lectures/lecture-08.html
+     * <li>The height of a leaf is 0.</li>
+     * <li>The height of an internal node v is 1 plus the maximum height of the children of v.</li>
+     * <li>The height of a tree is the height of the root.</li>
      * </ol>
      *
      * @param node
@@ -38,9 +70,10 @@ public class TreeUtils {
     /**
      * The depth of the node is its distance from the root.
      * <ol>
-     *     <li>The depth of the root is 0.</li>
-     *     <li>The depth of a node is 1 plus the depth of node's parent.</li>
+     * <li>The depth of the root is 0.</li>
+     * <li>The depth of a node is 1 plus the depth of node's parent.</li>
      * </ol>
+     *
      * @param node
      * @return The length of the path from node to the root node.
      */
@@ -54,6 +87,7 @@ public class TreeUtils {
 
     /**
      * Traverse the tree in post order and copy the entire tree.
+     *
      * @param node
      * @return
      */
@@ -67,7 +101,6 @@ public class TreeUtils {
     }
 
     /**
-     *
      * @param node
      * @return the total number of nodes in the tree.
      */
@@ -84,7 +117,6 @@ public class TreeUtils {
     }
 
     /**
-     *
      * @param node
      * @return total number of leaf nodes in the tree.
      */
@@ -126,6 +158,7 @@ public class TreeUtils {
         return (node != null && node.getLeftChild() == null && node.getRightChild() == null) ? true : false;
     }
 
+    // I picked up this method from the internet - while it works, I have not tried to look into it closely.
     public static void displayTree(Node root) {
         Stack globalStack = new Stack();
         globalStack.push(root);
