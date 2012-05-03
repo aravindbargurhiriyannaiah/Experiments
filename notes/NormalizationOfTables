@@ -1,0 +1,49 @@
+What is normalization?
+Normalization is the technique of assigning attributes to entities which helps us achieve the following
+1. Reduce data redundancies - the process of normalization adopts extension as a tool to control and reduce, and definitely not eliminate, data redundancy. The reduction of data redundancy helps eliminate anomalies that could result due to data redundancy.
+2. Cleaner table design that reflects what they intend to do.
+
+Why should the database tables be normalized?
+No normalization = redundant data = data anomalies, greater disk space requirements and associated costs of improvement and maintenance.
+
+What will happen if tables are normalized too much?
+Greater normalization = more number of tables = slower performance while joining tables to generate results
+
+How much does one normalize?
+Though there exist 5 Normal Forms (NF), usually tables are normalized upto 3NF. Only applications driven by statistical research are normalized upto 5NF (which are very rare). Generally tables are normalized upto 3NF. The trade offs should be carefully evaluated. If we need performance, greater normalization should be cautiously approached.
+
+Details about Normal Forms
+
+A database table is said to be in 1NF if
+1. All the primary key attributes have been defined.
+2. All the other attributes depend on the primary key attributes
+3. There exist no repetitive groups. (The intersection of a row/column generates only one value and not a set of values.)
+
+A database table is said to be in 2NF if 
+1. It is in 1NF and
+2. There exist no partial dependencies (There exist no attributes that are dependent on only one portion of the primary key attribute.). However, a table in 2NF can still exhibit transitive dependencies (There exist attributes that are functionally dependent on non primary key attributes.)
+
+A database table is said to be in 3NF if
+1. It is in 2NF and 
+2. There exist no transitive dependencies.
+
+How to convert a table into 1NF?
+Write down all the attributes
+Identify the key attributes and ensure that there exist no repetitive groups - you will mostly end up with a composite primary key
+Ideitify the relationship between each of the columns - all of them should be defined.
+
+How to convert a table in 1NF to 2NF?
+Write down each primary key attribute (one each per line) 
+Write down any composite keys in the last line.
+Each line will become a new table.
+Eg. if there exist a table in 1NF which has emp_id, name, role, salary where id and role are what define uniqueness across the table (composite primary keys), Write down the primary key attributes as follows
+
+emp_id
+role
+id, role
+
+Create 3 separate tables with the required columns based on the relationship that was identified earlier.
+The resulting tables will be in 2NF
+
+How to convert a table in 2NF to 3NF?
+Separate the columns that transitively depend on each other. This means that we create another table which defines the transitive dependency and have a foreign key to that dependency in the actual table that contained the transitive dependency.
