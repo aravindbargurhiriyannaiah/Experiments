@@ -1,11 +1,8 @@
 package com.funkyganesha.sorting;
 
-import java.util.List;
-
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.ArrayUtils;
 
-import com.google.common.primitives.Ints;
+import com.google.common.base.Preconditions;
 
 /**
  * Some useful information about merge sort (http://www.sorting-algorithms.com/merge-sort)
@@ -22,47 +19,32 @@ public class MergeSort implements Sorter {
     private int[] tempArray;
 
     @Override
-    public List<Integer> sort(List<Integer> unsortedIntegers) {
-        List<Integer> sortedNumbers = null;
-        if (CollectionUtils.isNotEmpty(unsortedIntegers)) {
-            tempArray = new int[unsortedIntegers.size()];
-            int[] sortedSet = sort(Ints.toArray(unsortedIntegers));
-            sortedNumbers = Ints.asList(sortedSet);
-        }
-        return sortedNumbers;
+    public void sort(int[] ints) {
+        Preconditions.checkArgument(ArrayUtils.isNotEmpty(ints), "The input is null or empty");
+        result = ints;
+        tempArray = new int[ints.length];
+        divideArray(0, ints.length - 1);
     }
 
-    @Override
-    public int[] sort(int[] unsortedIntegers) {
-        if (ArrayUtils.isNotEmpty(unsortedIntegers)) {
-            result = unsortedIntegers;
-            mergeSort(0, result.length - 1);
-        }
-        return result;
-    }
-
-    private void mergeSort(int low, int high) {
+    private void divideArray(int low, int high) {
         if (low < high) {
             int mid = (low + high) / 2;
-            mergeSort(low, mid);
-            mergeSort(mid + 1, high);
-            simpleMerge(low, mid, high);
+            divideArray(low, mid);
+            divideArray(mid + 1, high);
+            mergeArrays(low, mid, high);
         }
     }
 
-    private void simpleMerge(int low, int mid, int high) {
+    private void mergeArrays(int low, int mid, int high) {
         for (int i = low; i <= high; i++) {
             tempArray[i] = result[i];
         }
         int i = low;
-        int k = low;
         int j = mid + 1;
-        // ensure that the indexes are not out of bounds - this is like two piles of sorted cards.
-        // Pick the right one and place it upside down. Move on till one pile is done. Copy the remaining cards in the other pile as is
-        while (i <= mid && j <= high) {
-            result[k++] = (tempArray[i] <= tempArray[j]) ? tempArray[i++] : tempArray[j++];
+        int k = low;
+        while (i <= j && j <= high) {
+            result[k++] = (tempArray[i] < tempArray[j]) ? tempArray[i++] : tempArray[j++];
         }
-
         while (i <= mid) {
             result[k++] = tempArray[i++];
         }
