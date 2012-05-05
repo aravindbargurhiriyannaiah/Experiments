@@ -36,7 +36,7 @@ public abstract class CommonTestCases {
     @Test
     public void testWithValidArray_1() {
         ints = new int[21];
-        for (int i = 0; i < 21; i++) {
+        for (int i = 0; i < ints.length; i++) {
             ints[i] = RandomUtils.nextInt(100);
         }
         sorter.sort(ints);
@@ -46,7 +46,17 @@ public abstract class CommonTestCases {
     @Test
     public void testWithValidArray_2() {
         ints = new int[10];
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < ints.length; i++) {
+            ints[i] = RandomUtils.nextInt(100);
+        }
+        sorter.sort(ints);
+        SorterUtilTest.compareAndAssertIfTheArrayIsSortedInAscendingOrder(ints);
+    }
+
+    @Test
+    public void testWithLargeArray() {
+        ints = new int[RandomUtils.nextInt(200)];
+        for (int i = 0; i < ints.length; i++) {
             ints[i] = RandomUtils.nextInt(100);
         }
         sorter.sort(ints);

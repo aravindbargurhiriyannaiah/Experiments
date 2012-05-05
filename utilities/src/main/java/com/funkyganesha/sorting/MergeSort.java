@@ -40,8 +40,8 @@ public class MergeSort implements Sorter {
             tempArray[i] = numbers[i];
         }
         int i = low;
-        int j = mid + 1;
         int k = low;
+        int j = mid + 1;
         while (i <= mid && j <= high) {
             numbers[k++] = (tempArray[i] <= tempArray[j]) ? tempArray[i++] : tempArray[j++];
         }

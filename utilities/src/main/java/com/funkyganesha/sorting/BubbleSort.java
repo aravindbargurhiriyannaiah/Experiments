@@ -5,11 +5,19 @@ import org.apache.commons.lang.ArrayUtils;
 import com.funkyganesha.sorting.util.SorterUtil;
 import com.google.common.base.Preconditions;
 
+/**
+ * <ol>
+ * <li>Stable</li>
+ * <li>O(1) extra space</li>
+ * <li>O(n*n) comparisons and swaps</li>
+ * <li>Adaptive: O(n) when nearly sorted</li>
+ * </ol>
+ */
 public class BubbleSort implements Sorter {
 
     @Override
     public void sort(int[] numbers) {
-        Preconditions.checkArgument(ArrayUtils.isNotEmpty(numbers), "The input is either null or empty");
+        Preconditions.checkArgument(ArrayUtils.isNotEmpty(numbers), "The input is either null or empty.");
         boolean isSwapped = true;
         int j = 0;
         while (isSwapped) {

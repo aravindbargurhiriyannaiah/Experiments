@@ -5,24 +5,34 @@ import org.apache.commons.lang.ArrayUtils;
 import com.funkyganesha.sorting.util.SorterUtil;
 import com.google.common.base.Preconditions;
 
+/**
+ * Properties
+ * <ol><li>Not stable</li>
+ * <li>O(1) extra space</li>
+ * <li>Θ(n2) comparisons</li>
+ * <li>Θ(n) swaps</li>
+ * <li>Not adaptive</li></ol>
+ */
 public class SelectionSort implements Sorter {
     private int[] numbers;
 
     @Override
     public void sort(int[] numbers) {
-        Preconditions.checkArgument(ArrayUtils.isNotEmpty(numbers), "The input is either null or empty");
+        Preconditions.checkArgument(ArrayUtils.isNotEmpty(numbers), "The input is either null or empty.");
         this.numbers = numbers;
-        int minIndex;
-        for (int i = 0; i < numbers.length; i++) {
-            minIndex = findIndexOfSmallestElement(i);
-            SorterUtil.swap(numbers, minIndex, i);
+        for (int i = 0; i < this.numbers.length; i++) {
+            //find the smallest number's index and swap it with the current number.
+            int smallestNumbersIndex = findSmallestNumbersIndex(i);
+            SorterUtil.swap(this.numbers, i, smallestNumbersIndex);
         }
     }
 
-    private int findIndexOfSmallestElement(int startIndex) {
+    private int findSmallestNumbersIndex(int startIndex) {
         int minIndex = startIndex;
         for (int i = startIndex; i < numbers.length; i++) {
-            minIndex = (numbers[i] < numbers[minIndex]) ? i : minIndex;
+            if (numbers[i] < numbers[minIndex]) {
+                minIndex = i;
+            }
         }
         return minIndex;
     }
