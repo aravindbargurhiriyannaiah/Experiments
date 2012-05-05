@@ -1,8 +1,8 @@
-package com.funkyganesha.sorting;
+package com.funkyganesha.sort;
 
 import org.apache.commons.lang.ArrayUtils;
 
-import com.funkyganesha.sorting.util.SorterUtil;
+import com.funkyganesha.sort.util.SorterUtil;
 import com.google.common.base.Preconditions;
 
 /**

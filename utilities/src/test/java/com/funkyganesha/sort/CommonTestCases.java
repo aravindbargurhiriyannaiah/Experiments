@@ -1,9 +1,9 @@
-package com.funkyganesha.sorting;
+package com.funkyganesha.sort;
 
 import org.apache.commons.lang.math.RandomUtils;
 import org.junit.Test;
 
-import com.funkyganesha.sorting.util.SorterUtilTest;
+import com.funkyganesha.sort.util.SorterUtilTest;
 
 public abstract class CommonTestCases {
     protected Sorter sorter;

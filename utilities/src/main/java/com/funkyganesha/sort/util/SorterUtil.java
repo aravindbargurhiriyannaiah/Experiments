@@ -1,4 +1,4 @@
-package com.funkyganesha.sorting.util;
+package com.funkyganesha.sort.util;
 
 import org.apache.commons.lang.ArrayUtils;
 

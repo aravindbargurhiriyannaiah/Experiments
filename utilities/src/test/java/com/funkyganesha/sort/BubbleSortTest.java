@@ -1,4 +1,4 @@
-package com.funkyganesha.sorting;
+package com.funkyganesha.sort;
 
 import org.junit.Before;
 
