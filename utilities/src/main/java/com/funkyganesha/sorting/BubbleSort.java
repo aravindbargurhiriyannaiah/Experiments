@@ -2,32 +2,23 @@ package com.funkyganesha.sorting;
 
 import org.apache.commons.lang.ArrayUtils;
 
+import com.funkyganesha.sorting.util.SorterUtil;
 import com.google.common.base.Preconditions;
 
-/**
- *
- */
 public class BubbleSort implements Sorter {
 
     @Override
-    public void sort(int[] ints) {
-        Preconditions.checkArgument(ArrayUtils.isNotEmpty(ints), "The input is either null or empty");
-        sortArray(ints);
-    }
-
-    private void sortArray(int[] ints) {
-        boolean swapped = true;
+    public void sort(int[] numbers) {
+        Preconditions.checkArgument(ArrayUtils.isNotEmpty(numbers), "The input is either null or empty");
+        boolean isSwapped = true;
         int j = 0;
-        int temp;
-        while (swapped) {
-            swapped = false;
+        while (isSwapped) {
+            isSwapped = false;
             j++;
-            for (int i = 0; i < ints.length - j; i++) {
-                if (ints[i] > ints[i + 1]) {
-                    temp = ints[i];
-                    ints[i] = ints[i + 1];
-                    ints[i + 1] = temp;
-                    swapped = true;
+            for (int i = 0; i < numbers.length - j; i++) {
+                if (numbers[i] > numbers[i + 1]) {
+                    SorterUtil.swap(numbers, i, i + 1);
+                    isSwapped = true;
                 }
             }
         }

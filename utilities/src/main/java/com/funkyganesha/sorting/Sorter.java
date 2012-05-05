@@ -2,5 +2,5 @@ package com.funkyganesha.sorting;
 
 public interface Sorter {
 
-    public void sort(int[] ints);
+    public void sort(int[] numbers);
 }

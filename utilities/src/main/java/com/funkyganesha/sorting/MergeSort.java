@@ -15,15 +15,15 @@ import com.google.common.base.Preconditions;
  * </ol>
  */
 public class MergeSort implements Sorter {
-    private int[] result;
+    private int[] numbers;
     private int[] tempArray;
 
     @Override
-    public void sort(int[] ints) {
-        Preconditions.checkArgument(ArrayUtils.isNotEmpty(ints), "The input is null or empty");
-        result = ints;
-        tempArray = new int[ints.length];
-        divideArray(0, ints.length - 1);
+    public void sort(int[] numbers) {
+        Preconditions.checkArgument(ArrayUtils.isNotEmpty(numbers), "The input is null or empty");
+        this.numbers = numbers;
+        tempArray = new int[numbers.length];
+        divideArray(0, numbers.length - 1);
     }
 
     private void divideArray(int low, int high) {
@@ -37,16 +37,16 @@ public class MergeSort implements Sorter {
 
     private void mergeArrays(int low, int mid, int high) {
         for (int i = low; i <= high; i++) {
-            tempArray[i] = result[i];
+            tempArray[i] = numbers[i];
         }
         int i = low;
         int j = mid + 1;
         int k = low;
-        while (i <= j && j <= high) {
-            result[k++] = (tempArray[i] < tempArray[j]) ? tempArray[i++] : tempArray[j++];
+        while (i <= mid && j <= high) {
+            numbers[k++] = (tempArray[i] <= tempArray[j]) ? tempArray[i++] : tempArray[j++];
         }
         while (i <= mid) {
-            result[k++] = tempArray[i++];
+            numbers[k++] = tempArray[i++];
         }
     }
 }
