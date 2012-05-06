@@ -13,19 +13,19 @@ import static junit.framework.Assert.assertNull;
 public class ListManipulatorTest {
     @Test
     public void testReverseList_null_list() {
-        assertNull(ListManipulator.reverseList(null));
+        assertNull(ListManipulator.reverseListAndCreatePalindrome(null));
     }
 
     @Test
     public void testReverseList_empty_list() {
-        assertEquals(0, ListManipulator.reverseList(new ArrayList<Character>()).size());
+        assertEquals(0, ListManipulator.reverseListAndCreatePalindrome(new ArrayList<Character>()).size());
     }
 
     @Test
     public void testReverseList_valid_input_only_one_character() {
         List<Character> characters = Lists.newArrayList();
         characters.add('a');
-        List<Character> resultList = ListManipulator.reverseList(characters);
+        List<Character> resultList = ListManipulator.reverseListAndCreatePalindrome(characters);
         assertEquals(1, resultList.size());
         assertEquals(Character.valueOf('a'), resultList.get(0));
     }
@@ -35,7 +35,7 @@ public class ListManipulatorTest {
         List<Character> characters = Lists.newArrayList();
         characters.add('a');
         characters.add('b');
-        List<Character> resultList = ListManipulator.reverseList(characters);
+        List<Character> resultList = ListManipulator.reverseListAndCreatePalindrome(characters);
         assertEquals(3, resultList.size());
         assertEquals(Character.valueOf('a'), resultList.get(0));
         assertEquals(Character.valueOf('b'), resultList.get(1));
@@ -51,7 +51,7 @@ public class ListManipulatorTest {
         characters.add('d');
         characters.add('e');
         characters.add('f');
-        List<Character> resultList = ListManipulator.reverseList(characters);
+        List<Character> resultList = ListManipulator.reverseListAndCreatePalindrome(characters);
         assertEquals(11, resultList.size());
         assertEquals(Character.valueOf('a'), resultList.get(0));
         assertEquals(Character.valueOf('b'), resultList.get(1));

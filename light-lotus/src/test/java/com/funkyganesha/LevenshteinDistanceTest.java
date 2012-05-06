@@ -1,6 +1,5 @@
 package com.funkyganesha;
 
-import com.funkyganesha.exception.LightLotusException;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
@@ -16,7 +15,7 @@ public class LevenshteinDistanceTest {
         assertEquals(INCORRECT_LEVENSHTEIN_DISTANCE_RETURNED, 3, LevenshteinDistance.calculateLevenshteinDistance("Saturday", "Sunday"));
     }
 
-    @Test(expected = LightLotusException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testCalculateLevenshteinDistance_both_null_inputs() {
         LevenshteinDistance.calculateLevenshteinDistance(null, null);
     }

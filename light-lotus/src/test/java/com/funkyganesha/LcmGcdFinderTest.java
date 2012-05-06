@@ -1,6 +1,5 @@
 package com.funkyganesha;
 
-import com.funkyganesha.exception.LightLotusException;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
@@ -18,29 +17,34 @@ public class LcmGcdFinderTest {
         assertEquals(10, LcmGcdFinder.computeLcm(10L));
     }
 
-    @Test(expected = LightLotusException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testComputeLcm_null_input() {
         LcmGcdFinder.computeLcm(null);
     }
 
-    @Test(expected = LightLotusException.class)
+    @Test (expected = IllegalArgumentException.class)
+    public void testComputeGcdWithNullInput() {
+        LcmGcdFinder.computeGcd(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testComputeLcm_empty_input() {
         LcmGcdFinder.computeLcm();
     }
 
-    @Test(expected = LightLotusException.class)
+    @Test(expected = IllegalArgumentException.class)
+    public void testComputeGcd_empty_input() {
+        LcmGcdFinder.computeGcd();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testComputeLcm_negative_input() {
         LcmGcdFinder.computeLcm(3L, 4L, -1L);
     }
 
-    @Test(expected = LightLotusException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testComputeGcd_negative_numbers() {
         LcmGcdFinder.computeGcd(3L, 2L, -9L);
-    }
-
-    @Test(expected = LightLotusException.class)
-    public void testComputeGcd_empty_input() {
-        LcmGcdFinder.computeGcd();
     }
 
     @Test

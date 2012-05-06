@@ -1,13 +1,12 @@
 package com.funkyganesha;
 
-import com.google.common.collect.Lists;
-import org.apache.commons.collections.CollectionUtils;
-
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
+
 public class ListManipulator {
-    public static List<Character> reverseList(List<Character> characters) {
+    public static List<Character> reverseListAndCreatePalindrome(List<Character> characters) {
         if (CollectionUtils.isNotEmpty(characters)) {
             if (characters.size() == 1) {
                 return characters;

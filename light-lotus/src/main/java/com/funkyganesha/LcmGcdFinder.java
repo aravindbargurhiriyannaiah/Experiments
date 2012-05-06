@@ -1,27 +1,26 @@
 package com.funkyganesha;
 
-import com.funkyganesha.exception.LightLotusException;
-import com.google.common.collect.Sets;
+import java.util.Set;
+
 import org.apache.commons.lang.ArrayUtils;
 
-import java.util.Set;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Sets;
 
 public class LcmGcdFinder {
 
     /**
      * Computes GCD of the given numbers by GCD (a, b, ...) = (a * b * ...) / lcm(a, b, ...)
      *
-     * @param longs
+     * @param numbers
      * @return
-     * @throws LightLotusException
      */
-    public static long computeGcd(Long... longs) throws LightLotusException {
-        long gcd;
-        validateInput(longs);
-        gcd = longs[0];
-        long lcm = 0;
-        for (long integer : longs) {
-            isNegative(integer, gcd);
+    public static long computeGcd(Long... numbers) {
+        Preconditions.checkArgument(ArrayUtils.isNotEmpty(numbers), "The input is either empty or null.");
+        Preconditions.checkArgument(areAllPositiveNumbers(numbers), "There are negative numbers. Cannot continue.");
+        long gcd = numbers[0];
+        long lcm;
+        for (long integer : numbers) {
             lcm = findLcm(integer, gcd);
             gcd = (integer * gcd) / lcm;
         }
@@ -35,18 +34,16 @@ public class LcmGcdFinder {
      * <li>Pick the first commonly occurring number from all the lists.</li>
      * </ol>
      *
-     * @param longs
+     * @param numbers
      * @return
-     * @throws LightLotusException
      */
-    public static long computeLcm(Long... longs) throws LightLotusException {
-        long lcm = 0;
-        validateInput(longs);
-        lcm = longs[0];
-        if (longs.length > 1) {
-            for (long integer : longs) {
-                isNegative(lcm, integer);
-                lcm = findLcm(integer, lcm);
+    public static long computeLcm(Long... numbers) {
+        Preconditions.checkArgument(ArrayUtils.isNotEmpty(numbers), "The input is either empty or null.");
+        Preconditions.checkArgument(areAllPositiveNumbers(numbers), "There are negative numbers. Cannot continue.");
+        long lcm = numbers[0];
+        if (numbers.length > 1) {
+            for (long number : numbers) {
+                lcm = findLcm(number, lcm);
             }
         }
         return lcm;
@@ -80,15 +77,14 @@ public class LcmGcdFinder {
         return lcm;
     }
 
-    private static void isNegative(long first, long second) {
-        if ((Long.signum(second) == -1) || (Long.signum(first) == -1)) {
-            throw new LightLotusException("Cannot workd with negative numbers. First number = " + first + ", Second number = " + second);
+    private static boolean areAllPositiveNumbers(Long[] longs) {
+        boolean result = true;
+        for (long l : longs) {
+            if (Long.signum(l) == -1) {
+                result = false;
+                break;
+            }
         }
-    }
-
-    private static void validateInput(Long... longs) {
-        if (ArrayUtils.isEmpty(longs)) {
-            throw new LightLotusException("Cannot continue. Input array is either empty or null.");
-        }
+        return result;
     }
 }
