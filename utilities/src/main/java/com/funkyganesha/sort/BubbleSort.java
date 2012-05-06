@@ -6,6 +6,7 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.funkyganesha.sort.util.SorterUtil;
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 
 /**
  * <ol>
@@ -16,21 +17,25 @@ import com.google.common.base.Preconditions;
  * </ol>
  */
 public class BubbleSort<T extends Comparable<? super T>> implements Sorter<T> {
+    List<T> result;
 
     @Override
-    public void sort(List<T> values) {
+    public List<T> sort(List<T> values) {
         Preconditions.checkArgument(CollectionUtils.isNotEmpty(values), "The input is either null or empty.");
+        result = Lists.newArrayList(values);
         boolean isSwapped = true;
         int j = 0;
         while (isSwapped) {
             isSwapped = false;
             j++;
-            for (int i = 0; i < values.size() - j; i++) {
-                if (values.get(i).compareTo(values.get(i + 1)) > 0) {
-                    SorterUtil.swap(values, i, i + 1);
+            for (int i = 0; i < result.size() - j; i++) {
+                if (result.get(i).compareTo(result.get(i + 1)) > 0) {
+                    SorterUtil.swap(result, i, i + 1);
                     isSwapped = true;
                 }
             }
         }
+        return result;
     }
+
 }

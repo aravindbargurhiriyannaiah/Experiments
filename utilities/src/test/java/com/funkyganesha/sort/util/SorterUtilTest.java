@@ -1,5 +1,6 @@
 package com.funkyganesha.sort.util;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -7,16 +8,15 @@ import org.junit.Test;
 import com.google.common.collect.Lists;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 public class SorterUtilTest<T> {
     private List<T> list;
 
-    public static <T extends Comparable<? super T>> void compareAndAssertIfTheArrayIsSortedInAscendingOrder(List<T> values) {
-        for (int i = 0; i < values.size() - 1; i++) {
-            if (values.get(i).compareTo(values.get(i + 1)) > 0) {
-                fail("Invalid value at index [" + i + "]");
-            }
+    public static <T extends Comparable<? super T>> void compareAndAssertIfTheElementsAreSortedInAscendingOrder(List<T> input, List output) {
+        assertEquals("Incorrect number of elements in the output.", input.size(), output.size());
+        Collections.sort(input);
+        for (int i = 0; i < input.size(); i++) {
+            assertEquals("Invalid element at index.", input.get(i), output.get(i));
         }
     }
 

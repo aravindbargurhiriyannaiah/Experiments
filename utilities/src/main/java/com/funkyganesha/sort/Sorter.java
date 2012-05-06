@@ -8,5 +8,6 @@ public interface Sorter<T extends Comparable<? super T>> {
      *
      * @param values
      */
-    public void sort(List<T> values);
+    public List<T> sort(List<T> values);
+
 }

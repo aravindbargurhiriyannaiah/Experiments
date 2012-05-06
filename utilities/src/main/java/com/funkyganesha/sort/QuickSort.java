@@ -6,6 +6,7 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.funkyganesha.sort.util.SorterUtil;
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 
 /**
  * Properties
@@ -17,29 +18,30 @@ import com.google.common.base.Preconditions;
  * </ol>
  */
 public class QuickSort<T extends Comparable<? super T>> implements Sorter<T> {
-    private List<T> numbers;
+    private List<T> result;
 
     @Override
-    public void sort(List<T> numbers) {
-        Preconditions.checkArgument(CollectionUtils.isNotEmpty(numbers), "The input is either empty or null.");
-        this.numbers = numbers;
-        quickSort(0, numbers.size() - 1);
+    public List<T> sort(List<T> values) {
+        Preconditions.checkArgument(CollectionUtils.isNotEmpty(values), "The input is either empty or null.");
+        this.result = Lists.newArrayList(values);
+        quickSort(0, result.size() - 1);
+        return result;
     }
 
     private void quickSort(int low, int high) {
         int mid = (low + high) / 2;
-        T pivot = numbers.get(mid);
+        T pivot = result.get(mid);
         int leftPointer = low;
         int rightPointer = high;
         while (leftPointer <= rightPointer) {
-            while (numbers.get(leftPointer).compareTo(pivot) < 0) {
+            while (result.get(leftPointer).compareTo(pivot) < 0) {
                 leftPointer++;
             }
-            while (numbers.get(rightPointer).compareTo(pivot) > 0) {
+            while (result.get(rightPointer).compareTo(pivot) > 0) {
                 rightPointer--;
             }
             if (leftPointer <= rightPointer) {
-                SorterUtil.swap(numbers, leftPointer, rightPointer);
+                SorterUtil.swap(result, leftPointer, rightPointer);
                 leftPointer++;
                 rightPointer--;
             }

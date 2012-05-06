@@ -6,6 +6,7 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.funkyganesha.sort.util.SorterUtil;
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 
 /**
  * Properties
@@ -16,24 +17,25 @@ import com.google.common.base.Preconditions;
  * <li>Not adaptive</li></ol>
  */
 public class SelectionSort<T extends Comparable<? super T>> implements Sorter<T> {
-    private List<T> values;
+    private List<T> result;
 
     @Override
-    public void sort(List<T> values) {
+    public List<T> sort(List<T> values) {
         Preconditions.checkArgument(CollectionUtils.isNotEmpty(values), "The input is either null or empty.");
-        this.values = values;
+        this.result = Lists.newArrayList(values);
         int smallestNumbersIndex;
-        for (int i = 0; i < this.values.size(); i++) {
+        for (int i = 0; i < this.result.size(); i++) {
             //find the smallest number's index and swap it with the current number.
             smallestNumbersIndex = findIndexOfSmallestNumber(i);
-            SorterUtil.swap(this.values, i, smallestNumbersIndex);
+            SorterUtil.swap(this.result, i, smallestNumbersIndex);
         }
+        return result;
     }
 
     private int findIndexOfSmallestNumber(int startIndex) {
         int minIndex = startIndex;
-        for (int i = startIndex; i < values.size(); i++) {
-            if (values.get(i).compareTo(values.get(minIndex)) < 0) {
+        for (int i = startIndex; i < result.size(); i++) {
+            if (result.get(i).compareTo(result.get(minIndex)) < 0) {
                 minIndex = i;
             }
         }

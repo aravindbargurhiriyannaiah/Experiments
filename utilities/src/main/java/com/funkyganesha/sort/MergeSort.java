@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 
 /**
  * Some useful information about merge sort (http://www.sorting-algorithms.com/merge-sort)
@@ -17,43 +18,60 @@ import com.google.common.base.Preconditions;
  * </ol>
  */
 public class MergeSort<T extends Comparable<? super T>> implements Sorter<T> {
-    private List<T> values;
-
     @Override
-    public void sort(List<T> values) {
+    public List<T> sort(List<T> values) {
         Preconditions.checkArgument(CollectionUtils.isNotEmpty(values), "The input is null or empty");
-        this.values = values;
-        divideArray(0, values.size() - 1);
+        return mergeSort(values);
     }
 
-    private void divideArray(int low, int high) {
-        if (low < high) {
-            int mid = (low + high) / 2;
-            divideArray(low, mid);
-            divideArray(mid + 1, high);
-            mergeArrays(low, mid, high);
+    protected List<T> mergeSort(List<T> integers) {
+        if (integers.size() < 2) {
+            //it is already sorted
+            return integers;
         }
-    }
+        List<T> left = Lists.newArrayList();
+        List<T> right = Lists.newArrayList();
+        List<T> sortedLeft;
+        List<T> sortedRight;
+        List<T> sorted;
 
-    private void mergeArrays(int low, int mid, int high) {
-        int i = low;
-        int k = low;
-        int j = mid + 1;
-        while (i <= mid && j <= high) {
-            T element1 = values.get(i);
-            T element2 = values.get(j);
-            T t;
-            if (element1.compareTo(element2) <= 0) {
-                t = element1;
-                i++;
+        T integer;
+        for (int i = 0; i < integers.size(); i++) {
+            integer = integers.get(i);
+            if (i < (integers.size() / 2)) {
+                left.add(integer);
             } else {
-                t = element2;
-                j++;
+                right.add(integer);
             }
-            values.set(k++, t);
         }
-        while (i <= mid) {
-            values.set(k++, values.get(i++));
+        sortedLeft = mergeSort(left);
+        sortedRight = mergeSort(right);
+        sorted = simpleMerge(sortedLeft, sortedRight);
+        return sorted;
+    }
+
+    private List<T> simpleMerge(List<T> sortedLeft, List<T> sortedRight) {
+        List<T> result = Lists.newArrayList();
+        int left = 0;
+        int right = 0;
+        while (result.size() < (sortedLeft.size() + sortedRight.size())) {
+            if (sortedLeft.size() > left && sortedRight.size() > right) {
+                T x = sortedLeft.get(left);
+                T y = sortedRight.get(right);
+                if (x.compareTo(y) <= 0) {
+                    result.add(x);
+                    left++;
+                } else {
+                    result.add(y);
+                    right++;
+                }
+
+            } else if (sortedLeft.size() > left) {
+                result.add(sortedLeft.get(left++));
+            } else if (sortedRight.size() > right) {
+                result.add(sortedRight.get(right++));
+            }
         }
+        return result;
     }
 }

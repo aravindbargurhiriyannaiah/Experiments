@@ -6,6 +6,8 @@ public class SelectionSortSorterTest extends CommonSorterTestCases {
 
     @Before
     public void setUp() throws Exception {
-        sorter = new SelectionSort();
+        integerSorter = new SelectionSort<Integer>();
+        doubleSorter = new SelectionSort<Double>();
+        stringSorter = new SelectionSort<String>();
     }
 }

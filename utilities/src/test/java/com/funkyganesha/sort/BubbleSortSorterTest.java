@@ -5,6 +5,8 @@ import org.junit.Before;
 public class BubbleSortSorterTest extends CommonSorterTestCases {
     @Before
     public void setUp() {
-        sorter = new BubbleSort();
+        integerSorter = new BubbleSort<Integer>();
+        stringSorter = new BubbleSort<String>();
+        doubleSorter = new BubbleSort<Double>();
     }
 }
