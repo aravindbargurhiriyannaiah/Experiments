@@ -8,31 +8,31 @@ import com.google.common.base.Preconditions;
 /**
  * Properties
  * <ol>
- *  <li>Not stable</li>
+ * <li>Not stable</li>
  * <li>O(lg(n)) extra space (see discussion)</li>
  * <li>O(n2) time, but typically O(n·lg(n)) time</li>
  * <li>Not adaptive</li>
  * </ol>
  */
-public class QuickSort implements Sorter {
-    private int[] numbers;
+public class QuickSort<T extends Comparable<? super T>> implements Sorter<T> {
+    private T[] numbers;
 
     @Override
-    public void sort(int[] numbers) {
+    public void sort(T[] numbers) {
         Preconditions.checkArgument(ArrayUtils.isNotEmpty(numbers), "The input is either empty or null.");
         this.numbers = numbers;
         quickSort(0, numbers.length - 1);
     }
 
     private void quickSort(int low, int high) {
-        int pivot = numbers[(low + high) / 2];
+        T pivot = numbers[(low + high) / 2];
         int leftPointer = low;
         int rightPointer = high;
         while (leftPointer <= rightPointer) {
-            while (numbers[leftPointer] < pivot) {
+            while (numbers[leftPointer].compareTo(pivot) < 0) {
                 leftPointer++;
             }
-            while (numbers[rightPointer] > pivot) {
+            while (numbers[rightPointer].compareTo(pivot) > 0) {
                 rightPointer--;
             }
             if (leftPointer <= rightPointer) {

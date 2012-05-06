@@ -6,11 +6,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 public class SorterUtilTest {
-    private int[] integers;
+    private Integer[] integers;
 
-    public static void compareAndAssertIfTheArrayIsSortedInAscendingOrder(int[] ints) {
+    public static<T extends Comparable<? super T>> void compareAndAssertIfTheArrayIsSortedInAscendingOrder(T[] ints) {
         for (int i = 0; i < ints.length - 1; i++) {
-            if (ints[i] > ints[i + 1]) {
+            if (ints[i].compareTo(ints[i+1]) > 0) {
                 fail("Invalid value at index [" + i + "]");
             }
         }
@@ -23,15 +23,15 @@ public class SorterUtilTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testSwapWithEmptyArray() {
-        integers = new int[]{};
+        integers = new Integer[]{};
         SorterUtil.swap(integers, 0, 0);
     }
 
     @Test
     public void testSwap() {
-        integers = new int[]{3, 1, 2};
+        integers = new Integer[]{3, 1, 2};
         SorterUtil.swap(integers, 2, 0);
-        assertEquals("Invalid number because it is incorrectly swapped.", 2, integers[0]);
-        assertEquals("Invalid number because it is incorrectly swapped.", 3, integers[2]);
+        assertEquals("Invalid number because it is incorrectly swapped.", new Integer(2), integers[0]);
+        assertEquals("Invalid number because it is incorrectly swapped.", new Integer(3), integers[2]);
     }
 }

@@ -13,19 +13,18 @@ import com.google.common.base.Preconditions;
  * <li>Adaptive: O(n) when nearly sorted</li>
  * </ol>
  */
-public class BubbleSort implements Sorter {
-
+public class BubbleSort<T extends Comparable<? super T>> implements Sorter<T> {
     @Override
-    public void sort(int[] numbers) {
-        Preconditions.checkArgument(ArrayUtils.isNotEmpty(numbers), "The input is either null or empty.");
+    public void sort(T[] values) {
+        Preconditions.checkArgument(ArrayUtils.isNotEmpty(values), "The input is either null or empty.");
         boolean isSwapped = true;
         int j = 0;
         while (isSwapped) {
             isSwapped = false;
             j++;
-            for (int i = 0; i < numbers.length - j; i++) {
-                if (numbers[i] > numbers[i + 1]) {
-                    SorterUtil.swap(numbers, i, i + 1);
+            for (int i = 0; i < values.length - j; i++) {
+                if ((values[i].compareTo(values[i + 1])) > 0) {
+                    SorterUtil.swap(values, i, i + 1);
                     isSwapped = true;
                 }
             }
