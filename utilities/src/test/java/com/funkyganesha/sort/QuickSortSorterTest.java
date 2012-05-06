@@ -2,10 +2,10 @@ package com.funkyganesha.sort;
 
 import org.junit.Before;
 
-public class SelectionSortTest extends CommonTestCases {
+public class QuickSortSorterTest extends CommonSorterTestCases {
 
     @Before
     public void setUp() throws Exception {
-        sorter = new SelectionSort();
+        sorter = new QuickSort();
     }
 }

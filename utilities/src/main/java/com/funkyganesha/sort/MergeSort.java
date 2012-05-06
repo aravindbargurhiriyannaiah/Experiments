@@ -1,6 +1,8 @@
 package com.funkyganesha.sort;
 
-import org.apache.commons.lang.ArrayUtils;
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 
 import com.google.common.base.Preconditions;
 
@@ -15,13 +17,13 @@ import com.google.common.base.Preconditions;
  * </ol>
  */
 public class MergeSort<T extends Comparable<? super T>> implements Sorter<T> {
-    private T[] numbers;
+    private List<T> values;
 
     @Override
-    public void sort(T[] numbers) {
-        Preconditions.checkArgument(ArrayUtils.isNotEmpty(numbers), "The input is null or empty");
-        this.numbers = numbers;
-        divideArray(0, numbers.length - 1);
+    public void sort(List<T> values) {
+        Preconditions.checkArgument(CollectionUtils.isNotEmpty(values), "The input is null or empty");
+        this.values = values;
+        divideArray(0, values.size() - 1);
     }
 
     private void divideArray(int low, int high) {
@@ -38,10 +40,20 @@ public class MergeSort<T extends Comparable<? super T>> implements Sorter<T> {
         int k = low;
         int j = mid + 1;
         while (i <= mid && j <= high) {
-            numbers[k++] = (numbers[i].compareTo(numbers[j]) <= 0) ? numbers[i++] : numbers[j++];
+            T element1 = values.get(i);
+            T element2 = values.get(j);
+            T t;
+            if (element1.compareTo(element2) <= 0) {
+                t = element1;
+                i++;
+            } else {
+                t = element2;
+                j++;
+            }
+            values.set(k++, t);
         }
         while (i <= mid) {
-            numbers[k++] = numbers[i++];
+            values.set(k++, values.get(i++));
         }
     }
 }

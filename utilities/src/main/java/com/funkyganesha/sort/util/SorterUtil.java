@@ -1,15 +1,17 @@
 package com.funkyganesha.sort.util;
 
-import org.apache.commons.lang.ArrayUtils;
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 
 import com.google.common.base.Preconditions;
 
-public class SorterUtil <T extends Comparable<? super T>> {
+public class SorterUtil {
 
-    public static <T> void swap(T[] comparables, int i, int j) {
-        Preconditions.checkArgument(ArrayUtils.isNotEmpty(comparables), "Array is either empty or null.");
-        T temp = comparables[i];
-        comparables[i] = comparables[j];
-        comparables[j] = temp;
+    public static <T> void swap(List<T> list, int i, int j) {
+        Preconditions.checkArgument(CollectionUtils.isNotEmpty(list), "Array is either empty or null.");
+        T temp = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, temp);
     }
 }

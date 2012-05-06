@@ -1,6 +1,8 @@
 package com.funkyganesha.sort;
 
-import org.apache.commons.lang.ArrayUtils;
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 
 import com.funkyganesha.sort.util.SorterUtil;
 import com.google.common.base.Preconditions;
@@ -15,24 +17,25 @@ import com.google.common.base.Preconditions;
  * </ol>
  */
 public class QuickSort<T extends Comparable<? super T>> implements Sorter<T> {
-    private T[] numbers;
+    private List<T> numbers;
 
     @Override
-    public void sort(T[] numbers) {
-        Preconditions.checkArgument(ArrayUtils.isNotEmpty(numbers), "The input is either empty or null.");
+    public void sort(List<T> numbers) {
+        Preconditions.checkArgument(CollectionUtils.isNotEmpty(numbers), "The input is either empty or null.");
         this.numbers = numbers;
-        quickSort(0, numbers.length - 1);
+        quickSort(0, numbers.size() - 1);
     }
 
     private void quickSort(int low, int high) {
-        T pivot = numbers[(low + high) / 2];
+        int mid = (low + high) / 2;
+        T pivot = numbers.get(mid);
         int leftPointer = low;
         int rightPointer = high;
         while (leftPointer <= rightPointer) {
-            while (numbers[leftPointer].compareTo(pivot) < 0) {
+            while (numbers.get(leftPointer).compareTo(pivot) < 0) {
                 leftPointer++;
             }
-            while (numbers[rightPointer].compareTo(pivot) > 0) {
+            while (numbers.get(rightPointer).compareTo(pivot) > 0) {
                 rightPointer--;
             }
             if (leftPointer <= rightPointer) {

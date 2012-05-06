@@ -1,6 +1,8 @@
 package com.funkyganesha.sort;
 
-import org.apache.commons.lang.ArrayUtils;
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 
 import com.funkyganesha.sort.util.SorterUtil;
 import com.google.common.base.Preconditions;
@@ -14,14 +16,14 @@ import com.google.common.base.Preconditions;
  * <li>Not adaptive</li></ol>
  */
 public class SelectionSort<T extends Comparable<? super T>> implements Sorter<T> {
-    private T[] values;
+    private List<T> values;
 
     @Override
-    public void sort(T[] values) {
-        Preconditions.checkArgument(ArrayUtils.isNotEmpty(values), "The input is either null or empty.");
+    public void sort(List<T> values) {
+        Preconditions.checkArgument(CollectionUtils.isNotEmpty(values), "The input is either null or empty.");
         this.values = values;
         int smallestNumbersIndex;
-        for (int i = 0; i < this.values.length; i++) {
+        for (int i = 0; i < this.values.size(); i++) {
             //find the smallest number's index and swap it with the current number.
             smallestNumbersIndex = findIndexOfSmallestNumber(i);
             SorterUtil.swap(this.values, i, smallestNumbersIndex);
@@ -30,8 +32,8 @@ public class SelectionSort<T extends Comparable<? super T>> implements Sorter<T>
 
     private int findIndexOfSmallestNumber(int startIndex) {
         int minIndex = startIndex;
-        for (int i = startIndex; i < values.length; i++) {
-            if (values[i].compareTo(values[minIndex]) < 0) {
+        for (int i = startIndex; i < values.size(); i++) {
+            if (values.get(i).compareTo(values.get(minIndex)) < 0) {
                 minIndex = i;
             }
         }
