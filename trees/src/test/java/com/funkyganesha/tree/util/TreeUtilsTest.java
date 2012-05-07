@@ -14,6 +14,7 @@ import com.funkyganesha.tree.bean.Node;
 import com.google.common.collect.Lists;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
@@ -246,5 +247,44 @@ public class TreeUtilsTest {
         assertEquals("Invalid node returned for level [" + level + "] ", 4, nodesAtLevel.get(0).getValue());
         assertEquals("Invalid node returned for level [" + level + "] ", 7, nodesAtLevel.get(1).getValue());
         assertEquals("Invalid node returned for level [" + level + "] ", 13, nodesAtLevel.get(2).getValue());
+    }
+
+    @Test
+    public void testCreateListFromTreeWithNull() {
+        List<Integer> listFromTree = TreeUtils.createListFromTree(null);
+        assertNull("The result should be null", listFromTree);
+    }
+
+    @Test
+    public void testCreateListFromTreeWithValidBinarySearchTree() {
+        List<Integer> listFromTree = TreeUtils.createListFromTree(tree.getRootNode());
+        assertNotNull("The result should not be null", listFromTree);
+        assertEquals("Incorrect size", 3, listFromTree.size());
+        assertEquals("Incorrect value", new Integer(2),listFromTree.get(0));
+        assertEquals("Incorrect value", new Integer(3),listFromTree.get(1));
+        assertEquals("Incorrect value", new Integer(4),listFromTree.get(2));
+    }
+
+    @Test
+    public void testIsBinarySearchTreeWithNull() {
+        boolean binarySearchTree = TreeUtils.isBinarySearchTree(null);
+        assertFalse("The tree is not a valid binary search tree. The result should have been false.", binarySearchTree);
+    }
+
+    @Test
+    public void testIsBinarySearchTreeWithValidTree() {
+        boolean binarySearchTree = TreeUtils.isBinarySearchTree(tree.getRootNode());
+        assertTrue("The tree is a valid binary search tree. The result should have been true.", binarySearchTree);
+    }
+
+    @Test
+    public void testIsBinarySearchTreeWithInvalidBinarySearchTree() {
+        Node root = new Node(4);
+        Node left = new Node(5);
+        Node right = new Node(6);
+        root.setLeftChild(left);
+        root.setRightChild(right);
+        boolean binarySearchTree = TreeUtils.isBinarySearchTree(root);
+        assertFalse("The tree is not a valid binary search tree. The result should have been false.", binarySearchTree);
     }
 }

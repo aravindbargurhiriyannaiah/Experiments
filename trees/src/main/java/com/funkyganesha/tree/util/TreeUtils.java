@@ -3,12 +3,48 @@ package com.funkyganesha.tree.util;
 import java.util.List;
 import java.util.Stack;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import com.funkyganesha.tree.bean.Node;
 import com.google.common.collect.Lists;
 
 public class TreeUtils {
+    public static boolean isBinarySearchTree(Node node) {
+        List<Integer> listFromTree = createListFromTree(node);
+        boolean result = true;
+        if (CollectionUtils.isNotEmpty(listFromTree)) {
+            for (int i = 0; i < listFromTree.size() - 2; i++) {
+                if (listFromTree.get(i) > listFromTree.get(i + 1)) {
+                    result = false;
+                    break;
+                }
+            }
+        } else {
+            result = false;
+        }
+        return result;
+    }
+
+    public static List<Integer> createListFromTree(Node node) {
+        List<Integer> nodeList = Lists.newArrayList();
+        addValuesToTreeInOrder(node, nodeList);
+        if (CollectionUtils.isEmpty(nodeList)) {
+            nodeList = null;
+        }
+        return nodeList;
+    }
+
+    private static void addValuesToTreeInOrder(Node node, List<Integer> nodeList) {
+        if (node != null) {
+            addValuesToTreeInOrder(node.getLeftChild(), nodeList);
+            nodeList.add(node.getValue());
+            addValuesToTreeInOrder(node.getRightChild(), nodeList);
+        }
+    }
+
     /**
      * level = 0 means the root node.
+     *
      * @param level
      * @param node
      * @return <ol><li>The number of nodes at a given level.</li>
@@ -30,6 +66,7 @@ public class TreeUtils {
 
     /**
      * level = 0 means the root node. The nodes in the list will be from left to right.
+     *
      * @param level
      * @param node
      * @return A list of all the nodes found at a given level. Empty list if none are found.
