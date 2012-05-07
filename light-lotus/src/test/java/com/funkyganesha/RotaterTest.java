@@ -1,8 +1,11 @@
 package com.funkyganesha;
 
-import com.funkyganesha.exception.LightLotusException;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.funkyganesha.exception.LightLotusException;
+import com.google.common.collect.Lists;
+import com.google.common.primitives.Ints;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -49,5 +52,36 @@ public class RotaterTest {
         assertEquals(ARRAY_HAS_BEEN_INCORRECTLY_ROTATED, 1, rotatedArray[2]);
         assertEquals(ARRAY_HAS_BEEN_INCORRECTLY_ROTATED, 2, rotatedArray[3]);
         assertEquals(ARRAY_HAS_BEEN_INCORRECTLY_ROTATED, 3, rotatedArray[4]);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testFindNumberOfRotationsWithNullArray() {
+        Rotater.findRotations(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testFindNumberOfRotationsWithEmpthArray() {
+        Rotater.findRotations(new int[]{});
+    }
+
+    @Test
+    public void testFindNumberOfRotations() {
+        int[] array = Ints.toArray(Lists.<Integer>newArrayList(7, 8, 4, 5, 6));
+        int rotations = Rotater.findRotations(array);
+        assertEquals("Invalid number of rotations round", 2, rotations);
+    }
+
+    @Test
+    public void testFindNumberOfRotationsInSortedArray() {
+        int[] array = Ints.toArray(Lists.<Integer>newArrayList(4, 5, 6));
+        int rotations = Rotater.findRotations(array);
+        assertEquals("Invalid number of rotations", 0, rotations);
+    }
+
+    @Test
+    public void testFindNumberOfRotationsWithLastIndex() {
+        int[] array = Ints.toArray(Lists.<Integer>newArrayList(7, 8, 9, 4));
+        int rotations = Rotater.findRotations(array);
+        assertEquals("Invalid number of rotations round", 3, rotations);
     }
 }

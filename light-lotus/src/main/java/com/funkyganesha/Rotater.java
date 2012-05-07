@@ -1,7 +1,9 @@
 package com.funkyganesha;
 
-import com.funkyganesha.exception.LightLotusException;
 import org.apache.commons.lang.ArrayUtils;
+
+import com.funkyganesha.exception.LightLotusException;
+import com.google.common.base.Preconditions;
 
 /**
  *
@@ -40,5 +42,33 @@ public class Rotater {
             }
         }
         return resultArray;
+    }
+
+    /**
+     * The array sent as a parameter is formed by rotating an array that was sorted in ascending order 'n'  times, find n.
+     * Eg.<ul>
+     * <li>Initial array - 4, 5, 6, 7, 8 -- (A)</li>
+     * <li>Right rotate the above array twice to get (C)</li>
+     * <ul>
+     * <li> Rotation 1 - 8, 4, 5, 6, 7 -- (B)</li>
+     * <li>Rotation 2 - 7, 8, 4, 5, 6 -- (C)</li></ul>
+     * <li>If input = C, output = 2. Because C is A, right rotated 2 times.</li>
+     * </ul>
+     *
+     * @param array
+     * @return the number of times the array has been right rotated to be in its current state.
+     */
+    public static int findRotations(int[] array) {
+        Preconditions.checkArgument(ArrayUtils.isNotEmpty(array), "Input is either null or empty.");
+        int result = 0;
+        int i = 0;
+        while (i < array.length - 1) {
+            if (array[i] > array[i + 1]) {
+                result = i + 1;
+                break;
+            }
+            i += 1;
+        }
+        return result;
     }
 }
