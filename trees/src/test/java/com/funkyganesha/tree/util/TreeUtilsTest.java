@@ -287,4 +287,51 @@ public class TreeUtilsTest {
         boolean binarySearchTree = TreeUtils.isBinarySearchTree(root);
         assertFalse("The tree is not a valid binary search tree. The result should have been false.", binarySearchTree);
     }
+
+    @Test
+    public void testBreadthFirstSearchWithNullNode() {
+        Node node = TreeUtils.breadthFirstSearch(null, 3);
+        assertNull("The result should be null.", node);
+    }
+
+    @Test
+    public void testBreadthFirstSearch() {
+        Node node = TreeUtils.breadthFirstSearch(tree.getRootNode(), 4);
+        assertNotNull("The result should not be null", node);
+        assertEquals("Incorrect value for the node returned.", 4, node.getValue());
+    }
+
+    @Test
+    public void testBreadthFirstSearchWithUnavailableNode() {
+        tree.deleteTree();
+        List<Integer> integerList = Lists.newArrayList(8, 3, 10, 1, 6, 4, 7, 14, 13);
+        tree.insert(integerList);
+        Node node = TreeUtils.breadthFirstSearch(tree.getRootNode(), 5);
+        assertNull("The result should be null.", node);
+    }
+
+    @Test
+    public void testDepthFirstSearchWithNullNode() {
+        Node node = TreeUtils.depthFirstSearch(null, -1);
+        assertNull("The result should be null", node);
+    }
+
+    @Test
+    public void testDepthFirstSearchUnavailable() {
+        tree.deleteTree();
+        List<Integer> integerList = Lists.newArrayList(8, 3, 10, 1, 6, 4, 7, 14, 13);
+        tree.insert(integerList);
+        Node node = TreeUtils.depthFirstSearch(tree.getRootNode(), 5);
+        assertNull("The result should be null.", node);
+    }
+
+    @Test
+    public void testDepthFirstSearchAvailable() {
+        tree.deleteTree();
+        List<Integer> integerList = Lists.newArrayList(8, 3, 10, 1, 6, 4, 7, 14, 13);
+        tree.insert(integerList);
+        Node node = TreeUtils.depthFirstSearch(tree.getRootNode(), 14);
+        assertNotNull("The result should not be null.", node);
+        assertEquals("Invalid node returned", 14, node.getValue());
+    }
 }

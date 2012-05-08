@@ -1,12 +1,15 @@
 package com.funkyganesha.tree.util;
 
+
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 import org.apache.commons.collections.CollectionUtils;
 
 import com.funkyganesha.tree.bean.Node;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Queues;
 
 public class TreeUtils {
     public static boolean isBinarySearchTree(Node node) {
@@ -23,6 +26,48 @@ public class TreeUtils {
             result = false;
         }
         return result;
+    }
+
+    public static Node depthFirstSearch(Node node, int value) {
+        if (node != null) {
+            if (node.getValue() == value) {
+                return node;
+            }
+            Node leftNode = depthFirstSearch(node.getLeftChild(), value);
+            if (leftNode != null) {
+                //go along the depth of the left sub tree
+                return leftNode;
+            }
+            Node rightNode = depthFirstSearch(node.getRightChild(), value);
+            if (rightNode != null) {
+                //go along the depth of the right sub tree
+                return rightNode;
+            }
+        }
+        return null;
+    }
+
+    public static Node breadthFirstSearch(Node node, int value) {
+        if (node != null) {
+            Queue<Node> queue = Queues.newLinkedBlockingQueue();
+            queue.add(node);
+            while (!queue.isEmpty()) {
+                Node nodeFromQueue = queue.poll();
+                if (nodeFromQueue.getValue() == value) {
+                    //Found the value.
+                    return nodeFromQueue;
+                }
+                if (nodeFromQueue.getLeftChild() != null) {
+                    //add all the left children
+                    queue.add(nodeFromQueue.getLeftChild());
+                }
+                if (nodeFromQueue.getRightChild() != null) {
+                    //add all the right children
+                    queue.add(nodeFromQueue.getRightChild());
+                }
+            }
+        }
+        return null;
     }
 
     public static List<Integer> createListFromTree(Node node) {
