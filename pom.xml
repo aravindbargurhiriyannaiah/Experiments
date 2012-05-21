@@ -16,6 +16,6 @@
     <module>utilities</module>
     <module>url-shortner</module>
     <module>trees</module>
+    <module>hibernate</module>
   </modules>
 </project>
-
