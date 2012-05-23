@@ -1,4 +1,4 @@
-package com.funkyganesha.domain.onetoone;
+package com.funkyganesha.onetooneunidirectional.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -7,7 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,7 +22,7 @@ public class Student implements Serializable {
     private Address address;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "id", unique = true, nullable = false)
     public int getId() {
         return id;
@@ -59,6 +58,4 @@ public class Student implements Serializable {
     public void setAddress(Address address) {
         this.address = address;
     }
-
-
 }

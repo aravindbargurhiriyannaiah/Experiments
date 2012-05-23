@@ -1,4 +1,4 @@
-package com.funkyganesha.domain.onetoone;
+package com.funkyganesha.onetooneunidirectional.domain;
 
 import java.io.Serializable;
 

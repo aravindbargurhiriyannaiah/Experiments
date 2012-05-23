@@ -5,20 +5,21 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.funkyganesha.domain.DomainObject;
-import com.funkyganesha.domain.onetoone.Address;
-import com.funkyganesha.domain.onetoone.Student;
+import com.funkyganesha.onetoonebidirectional.domain.Professional;
+import com.funkyganesha.onetoonebidirectional.domain.Skill;
+import com.funkyganesha.onetooneunidirectional.domain.Address;
+import com.funkyganesha.onetooneunidirectional.domain.Student;
 
 
 public class HibernateUtil {
 
-    private static Class [] annotatedClassesToBeAdded = {DomainObject.class,  Address.class, Student.class};
-
-    private HibernateUtil() {
-    }
+    private static Class[] annotatedClassesToBeAdded =
+            {DomainObject.class, Address.class, Student.class,
+                    Professional.class, Skill.class};
 
     private static class InstanceHolder {
-        public static SessionFactory sessionFactory = buildSessionFactory();
 
+        public static SessionFactory sessionFactory = buildSessionFactory();
         private static SessionFactory buildSessionFactory() {
             SessionFactory factory = null;
             try {
@@ -44,9 +45,12 @@ public class HibernateUtil {
             }
             return factory;
         }
-    }
 
+    }
     public static SessionFactory getSessionFactory() {
         return InstanceHolder.sessionFactory;
+    }
+
+    private HibernateUtil() {
     }
 }

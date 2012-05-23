@@ -1,4 +1,4 @@
-package com.funkyganesha.domain.onetoone;
+package com.funkyganesha.onetooneunidirectional;
 
 import java.util.Date;
 
@@ -7,11 +7,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
+import com.funkyganesha.onetooneunidirectional.domain.Address;
+import com.funkyganesha.onetooneunidirectional.domain.Student;
 import com.funkyganesha.util.HibernateUtil;
 
-public class OneToOneDemo {
+
+public class OneToOneUnidirectionalDemo {
     public static void main(String[] args) {
-        new OneToOneDemo().performOperation();
+        new OneToOneUnidirectionalDemo().performOperation();
     }
 
     private void performOperation() {
@@ -22,8 +25,6 @@ public class OneToOneDemo {
         currentSession.save(student);
         System.out.println(student.getId());
         transaction.commit();
-
-
     }
 
     private Student constructTestStudent(Address address) {
@@ -44,3 +45,4 @@ public class OneToOneDemo {
         return address;
     }
 }
+
