@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
 import com.funkyganesha.onetooneunidirectional.domain.Address;
-import com.funkyganesha.onetooneunidirectional.domain.Student;
+import com.funkyganesha.onetooneunidirectional.domain.User;
 import com.funkyganesha.util.HibernateUtil;
 
 
@@ -21,18 +21,18 @@ public class OneToOneUnidirectionalDemo {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session currentSession = sessionFactory.getCurrentSession();
         Transaction transaction = currentSession.beginTransaction();
-        Student student = constructTestStudent(constructTestAddress());
-        currentSession.save(student);
-        System.out.println(student.getId());
+        User user = constructTestStudent(constructTestAddress());
+        currentSession.save(user);
+        System.out.println(user.getId());
         transaction.commit();
     }
 
-    private Student constructTestStudent(Address address) {
-        Student student = new Student();
-        student.setName(RandomStringUtils.randomAlphabetic(10));
-        student.setAddress(address);
-        student.setDateOfBirth(new Date());
-        return student;
+    private User constructTestStudent(Address address) {
+        User user = new User();
+        user.setName(RandomStringUtils.randomAlphabetic(10));
+        user.setAddress(address);
+        user.setDateOfBirth(new Date());
+        return user;
     }
 
     private Address constructTestAddress() {

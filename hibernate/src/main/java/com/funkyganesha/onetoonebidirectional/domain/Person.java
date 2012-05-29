@@ -3,24 +3,21 @@ package com.funkyganesha.onetoonebidirectional.domain;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "person")
+@Table (name="person")
 public class Person {
     private int id;
-    private String firstName;
-    private String lastName;
-    private PersonDetails personDetails;
+    private String name;
+    private PersonDetail personDetail;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue
     public int getId() {
         return id;
     }
@@ -29,31 +26,21 @@ public class Person {
         this.id = id;
     }
 
-    @Column(name = "first_name")
-    public String getFirstName() {
-        return firstName;
+    @Column(name="name")
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Column(name = "last_name")
-    public String getLastName() {
-        return lastName;
+    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public PersonDetail getPersonDetail() {
+        return personDetail;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL, mappedBy ="person")
-    @JoinColumn (name="person_id")
-    public PersonDetails getPersonDetails() {
-        return personDetails;
-    }
-
-    public void setPersonDetails(PersonDetails personDetails) {
-        this.personDetails = personDetails;
+    public void setPersonDetail(PersonDetail personDetail) {
+        this.personDetail = personDetail;
     }
 }

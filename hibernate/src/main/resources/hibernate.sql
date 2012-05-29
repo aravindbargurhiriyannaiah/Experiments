@@ -3,8 +3,6 @@
 drop table test_table;
 drop table student;
 drop table address;
-drop table professional;
-drop table skills;
 drop table person,
 drop table person_details;
 
@@ -12,7 +10,7 @@ CREATE TABLE test_table (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 name VARCHAR(100));
 
-create table student (
+create table user (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 name VARCHAR(100), 
 date_of_birth timestamp , 
@@ -28,37 +26,15 @@ country varchar(50) not null,
 postal_code varchar(20) not null,
 student_id int);
 
-create table professional(
-id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(100),
-date_of_birth timestamp ,
-skill_id int not null);
-
-create table skill (
-id int not null auto_increment primary key,
-programming_language varchar(50),
-years_of_experience int,
-operating_system varchar(30),
-certification varchar(100),
-domain_expertise varchar(255),
-professional_id int);
-
-create table body (
-  id int not null auto_increment primary key
-);
-
-create table heart (
-id int NOT NULL auto_increment PRIMARY key );
 
 create table person (
 id int primary key not null,
-first_name varchar(255),
-last_name varchar(255)
+name varchar(255)
 );
 
-create table person_details (
+create table person_detail (
 id int not null auto_increment primary key,
-hair_color varchar(255),
-eye_color varchar(255),
+ssn varchar(255),
 constraint FOREIGN key (id) references person (id)
 );
+
