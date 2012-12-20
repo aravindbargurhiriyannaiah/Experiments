@@ -29,3 +29,4 @@ To create a multi-module maven project, like Experiments, do the following.
 3. Choose org.codehaus.mojo.archetypes:pom-root version: 1 for 1.0
 4. All the prompts as mentioned above in 5 will appear - enter appropriate values.
 5. A parent module will be created - there will be no src/ and the pom will have <packaging>pom</packaging> in it.
+
