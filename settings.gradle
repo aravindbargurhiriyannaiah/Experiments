@@ -1,0 +1,12 @@
+rootProject.name = 'Experiments'
+include ':dictionary'
+include ':tweeter'
+include ':utilities'
+include ':trees'
+include ':hibernate'
+
+project(':dictionary').projectDir = "$rootDir/dictionary" as File
+project(':tweeter').projectDir = "$rootDir/tweeter" as File
+project(':utilities').projectDir = "$rootDir/utilities" as File
+project(':trees').projectDir = "$rootDir/trees" as File
+project(':hibernate').projectDir = "$rootDir/hibernate" as File

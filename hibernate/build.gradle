@@ -1,0 +1,11 @@
+
+description = 'hibernate'
+dependencies {
+    compile group: 'commons-lang', name: 'commons-lang', version:'2.5'
+    compile group: 'org.hibernate', name: 'hibernate-core', version:'3.6.3.Final'
+    compile group: 'org.hsqldb', name: 'hsqldb', version:'2.0.0'
+    compile group: 'org.hibernate', name: 'hibernate-annotations', version:'3.5.6-Final'
+    compile group: 'org.javassist', name: 'javassist', version:'3.14.0-GA'
+    compile group: 'mysql', name: 'mysql-connector-java', version:'5.1.6'
+    testCompile group: 'junit', name: 'junit', version:'4.7'
+}
