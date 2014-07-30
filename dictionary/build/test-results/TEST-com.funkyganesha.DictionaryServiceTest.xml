@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.funkyganesha.DictionaryServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2014-07-30T01:10:03" hostname="PALBARGA009m" time="0.0">
+<testsuite name="com.funkyganesha.DictionaryServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2014-07-30T04:59:57" hostname="PALBARGA009m" time="0.0010">
   <properties/>
-  <testcase name="testApp" classname="com.funkyganesha.DictionaryServiceTest" time="0.0"/>
+  <testcase name="testApp" classname="com.funkyganesha.DictionaryServiceTest" time="0.0010"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

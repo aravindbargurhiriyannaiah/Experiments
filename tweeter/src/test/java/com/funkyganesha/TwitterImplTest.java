@@ -1,23 +1,15 @@
 package com.funkyganesha;
 
-import twitter4j.Paging;
-import twitter4j.ResponseList;
-import twitter4j.Status;
-import twitter4j.Tweet;
-import twitter4j.TwitterException;
-
-import java.util.List;
-
+import com.funkyganesha.service.Twitter;
+import com.funkyganesha.service.TwitterImpl;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import twitter4j.*;
 
-import com.funkyganesha.service.Twitter;
-import com.funkyganesha.service.TwitterImpl;
+import java.util.List;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.*;
 
 /**
  *
@@ -25,7 +17,7 @@ import static junit.framework.Assert.assertNull;
 public class TwitterImplTest {
     private static final String SAMPLE_TWITTER_ACCOUNT = "martinfowler";
     private static final Logger log = LoggerFactory.getLogger(TwitterImplTest.class);
-    private static final String SAMPLE_SEARCH_STRING = "Mahatma Gandhi";
+    private static final String SAMPLE_SEARCH_STRING = "Java";
     private Twitter twitter = new TwitterImpl();
 
     @Test
@@ -59,7 +51,7 @@ public class TwitterImplTest {
 
     @Test
     public void testSearchTwitter() throws Exception {
-        List<Tweet> result = twitter.searchTwitter(SAMPLE_SEARCH_STRING, null);
+        List<Status> result = twitter.searchTwitter(SAMPLE_SEARCH_STRING, null);
         assertNotNull("Should not have been null", result);
     }
 }

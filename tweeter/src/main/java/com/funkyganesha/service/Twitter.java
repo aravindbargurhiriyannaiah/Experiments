@@ -3,7 +3,6 @@ package com.funkyganesha.service;
 import twitter4j.Paging;
 import twitter4j.ResponseList;
 import twitter4j.Status;
-import twitter4j.Tweet;
 import twitter4j.TwitterException;
 
 import java.util.List;
@@ -16,12 +15,13 @@ public interface Twitter {
 
     /**
      *  Search within twitter
+     *
      * @param searchString
      * @param date Eg.  "2011-01-01". Can be null.
      * @return
      * @throws TwitterException
      */
-    List<Tweet> searchTwitter(String searchString, String date) throws TwitterException;
+    List<Status> searchTwitter(String searchString, String date) throws TwitterException;
 
     ResponseList<Status> readTweets(String twitterId) throws TwitterException;
 

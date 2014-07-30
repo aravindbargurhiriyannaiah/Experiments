@@ -1,21 +1,13 @@
 package com.funkyganesha.service;
 
 
-import twitter4j.Paging;
-import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.ResponseList;
-import twitter4j.Status;
-import twitter4j.Tweet;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-
-import java.util.Date;
-import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import twitter4j.*;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -56,11 +48,11 @@ public class TwitterImpl implements Twitter {
         return userTimeline;
     }
 
-    public List<Tweet> searchTwitter(String searchString, String date) throws TwitterException {
-        List<Tweet> result = null;
+    public List<Status> searchTwitter(String searchString, String date) throws TwitterException {
+        List<Status> result = null;
         if (StringUtils.isNotBlank(searchString)) {
             Query query = new Query(searchString);
-            query.setRpp(NUMBER_PER_PAGE);
+            query.setCount(NUMBER_PER_PAGE);
             if (StringUtils.isNotBlank(date)) {
                 query.setSince(date);
             }

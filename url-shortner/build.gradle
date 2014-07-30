@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.funkyganesha'
+version = '1.0-SNAPSHOT'
+
+description = "url-shortner"
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+
+
+repositories {
+        
+     maven { url "http://morphia.googlecode.com/svn/mavenrepo/" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'com.funkyganesha', name: 'ConfigReader', version:'1.0.0-SNAPSHOT'
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version:'2.7.2'
+    compile group: 'com.google.guava', name: 'guava', version:'10.0.1'
+    compile group: 'org.easymock', name: 'easymock', version:'3.0'
+    compile group: 'commons-lang', name: 'commons-lang', version:'2.4'
+    compile group: 'org.springframework', name: 'spring', version:'2.5'
+    compile group: 'com.google.code.morphia', name: 'morphia', version:'0.99'
+    testCompile group: 'junit', name: 'junit', version:'4.8.2'
+    testCompile group: 'org.powermock', name: 'powermock-module-junit4', version:'1.4.10'
+    testCompile group: 'org.powermock', name: 'powermock-api-easymock', version:'1.4.10'
+}
