@@ -1,7 +1,7 @@
-My experiments with programming in Java with Maven, Logback, Mongodb etc.
+My experiments with programming in Java with Maven, Gradle, Logback, Mongodb etc. I am converting the multimodule maven project to a gradle project. It is Work In Progress (WIP)
 
 Some info about the structure of the project (for forgetful people like me).
-Experiments is a multi-module maven project and has the following structure (Jan 2012)
+Experiments is a multi-module gradle project and has the following structure (Jan 2012)
 -Experiments
 	-LightLotus
 	-ConfigReader
