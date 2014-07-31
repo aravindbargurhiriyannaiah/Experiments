@@ -1,21 +1,11 @@
-apply plugin: 'java'
-apply plugin: 'maven'
-
-group = 'com.funkyganesha'
-version = '1.0-SNAPSHOT'
-
-description = """experiment-logger"""
-
-sourceCompatibility = 1.5
-targetCompatibility = 1.5
-
-
-
-repositories {
-        
-     maven { url "http://repo.maven.apache.org/maven2" }
-}
+description = 'experiment-logger'
 dependencies {
-    compile group: 'ch.qos.logback', name: 'logback-classic', version:'0.9.26'
-    testCompile group: 'junit', name: 'junit', version:'3.8.1'
+//    compile group: 'commons-lang', name: 'commons-lang', version:'2.5'
+//    compile group: 'org.hibernate', name: 'hibernate-core', version:'3.6.3.Final'
+//    compile group: 'org.hsqldb', name: 'hsqldb', version:'2.0.0'
+//    compile group: 'org.hibernate', name: 'hibernate-annotations', version:'3.5.6-Final'
+//    compile group: 'org.javassist', name: 'javassist', version:'3.14.0-GA'
+//    compile group: 'mysql', name: 'mysql-connector-java', version:'5.1.6'
+    testCompile group: 'junit', name: 'junit', version:'4.11'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.2'
 }

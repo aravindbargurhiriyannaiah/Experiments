@@ -4,6 +4,7 @@ include ':tweeter'
 include ':utilities'
 include ':trees'
 include ':hibernate'
+include ':experiment-logger'
 
 project(':dictionary').projectDir = "$rootDir/dictionary" as File
 project(':tweeter').projectDir = "$rootDir/tweeter" as File
