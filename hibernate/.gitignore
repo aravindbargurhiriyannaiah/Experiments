@@ -10,8 +10,10 @@
 *.ipr
 *.iml
 *.iws
+*.log
 .idea/*
 logback-test.xml
 jmeter.log
 gitinfo.txt
 target
+*.class
