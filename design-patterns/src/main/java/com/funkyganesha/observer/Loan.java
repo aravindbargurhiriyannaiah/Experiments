@@ -5,7 +5,6 @@ import java.util.List;
 public class Loan implements Subject {
     private List<Observer> observers = new ArrayList<Observer>();
 
-    private String bankName;
     private double interest;
 
     public void setInterest(double interest) {
@@ -13,8 +12,9 @@ public class Loan implements Subject {
         notifyObservers();
     }
 
-    public Loan(String bankName, double interest) {
-        this.bankName = bankName;
+    public Loan() {}
+
+    public Loan(double interest) {
         this.interest = interest;
     }
 
@@ -45,5 +45,4 @@ public class Loan implements Subject {
             observer.update(this.interest);
         }
     }
-
 }
