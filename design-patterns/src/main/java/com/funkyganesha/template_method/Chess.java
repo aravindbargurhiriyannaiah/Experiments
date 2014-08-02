@@ -19,10 +19,4 @@ public class Chess extends Game {
     public String decideWinner() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
-
-    public static void main(String[] args) {
-        Game game = new Sudoku();
-        game.play();
-
-    }
 }
