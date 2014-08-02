@@ -7,7 +7,7 @@ public class Fiat500 implements Car {
     private CarType carType;
     @Override
     public CarType getCarType() {
-        return null;
+        return carType;
     }
 
     @Override

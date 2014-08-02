@@ -7,14 +7,14 @@ public class CarFactory {
 
     public Car buildCar(CarType carType) {
         switch (carType) {
-            case LUXURY: {
-                car = new BMW();
-                car.setCarType(LUXURY);
+            case LUXURY_SEDAN: {
+                car = new Bmw();
+                car.setCarType(LUXURY_SEDAN);
                 break;
             }
-            case SEDAN: {
+            case ECONOMY_SEDAN: {
                 car = new Toyota();
-                car.setCarType(SEDAN);
+                car.setCarType(ECONOMY_SEDAN);
                 break;
             }
             case SMALL: {
@@ -25,9 +25,4 @@ public class CarFactory {
         }
         return car;
     }
-
-    public static void main(String[] args) {
-        new CarFactory().buildCar(LUXURY);
-    }
-
 }

@@ -1,5 +1,5 @@
 package com.funkyganesha.factory;
 
 public enum CarType {
-    SEDAN, LUXURY, SMALL
+    ECONOMY_SEDAN, LUXURY_SEDAN, SMALL
 }

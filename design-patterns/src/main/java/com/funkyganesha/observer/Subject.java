@@ -1,3 +1,5 @@
+package com.funkyganesha.observer;
+
 public interface Subject {
     boolean registerObserver(Observer observer);
 

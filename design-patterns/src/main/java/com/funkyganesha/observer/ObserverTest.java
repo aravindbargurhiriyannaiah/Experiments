@@ -1,3 +1,4 @@
+package com.funkyganesha.observer;
 public class ObserverTest {
     public static void main(String[] args) {
         Observer observer = new Internet();

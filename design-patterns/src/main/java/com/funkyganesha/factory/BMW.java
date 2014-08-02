@@ -1,6 +1,6 @@
 package com.funkyganesha.factory;
 
-public class BMW implements Car {
+public class Bmw implements Car {
     private CarType carType;
 
     public void setCarType(CarType carType) {
