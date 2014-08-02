@@ -1,5 +1,4 @@
-apply plugin: 'idea'
-description = 'designPatterns'
+description = 'design-patterns'
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.7'
 }

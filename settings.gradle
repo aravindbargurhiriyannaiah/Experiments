@@ -3,7 +3,7 @@ include ':dictionary'
 include ':tweeter'
 include ':utilities'
 include ':trees'
-include ':designPatterns'
+include ':design-patterns'
 include ':hibernate'
 include ':experiment-logger'
 
@@ -12,4 +12,4 @@ project(':tweeter').projectDir = "$rootDir/tweeter" as File
 project(':utilities').projectDir = "$rootDir/utilities" as File
 project(':trees').projectDir = "$rootDir/trees" as File
 project(':hibernate').projectDir = "$rootDir/hibernate" as File
-project(':designPatterns').projectDir = "$rootDir/designPatterns" as File
+project(':design-patterns').projectDir = "$rootDir/design-patterns" as File
