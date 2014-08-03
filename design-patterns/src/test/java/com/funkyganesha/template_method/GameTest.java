@@ -20,7 +20,5 @@ public class GameTest {
         Game game = new Chess();
         game.play();
         assertEquals("Invalid number of players returned", 2, game.decideNumberOfPlayers());
-
-
     }
 }

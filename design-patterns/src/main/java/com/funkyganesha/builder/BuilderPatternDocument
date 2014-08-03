@@ -1,0 +1,135 @@
+How to construct an object with multiple attributes?
+
+------ Approach 1 ------
+
+Use constructors to set the attributes of an object
+
+public class Car {
+	//required
+	private final String make;
+	//required
+	private final String model;
+	//optional
+	private final double mpg;
+
+	public Car (String make, String model) {
+		this.make = make;
+		this.model = model;
+	}
+
+	public Car (String make, String model, double mpg) {
+		this.make = make;
+		this.model = model;
+		this.mpg = mpg;
+	}
+}
+
+Problems with the above approach
+* There are many constructors - clients find it hard to choose.
+* Hard to read and maintain as the number of attributes increase.
+
+------ Approach 2 ------
+
+Use JavaBeans convention setters to set the attributes of an object.
+
+public class Car {
+	//required
+	private  String make;
+	//required
+	private  String model;
+	//optional
+	private  double mpg;
+
+	public void setMpg(double mpg) {
+		this.mpg = mpg;
+	}
+
+	public void setModel(String model){
+		this.model = model;
+	}
+
+	public void setMake(String make) {
+		this.make = make;
+	}
+
+	public String getMake() {
+		return make;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public double getMpg () {
+		return mpg;
+	}
+}
+
+Problems with this approach
+* Object became mutable.
+* Inconsistent state - a client may see the object being constructed as complete while it is not (only a few required attributes may be set and few still are pending).
+
+------ Approach 3 ------
+
+Each object has a nested builder (inner class) which sets attributes of the object.
+
+public class Car {
+	//required
+	private final String model;
+	//required
+	private final String make;
+	//optional
+	private final double mpg;
+
+	public double getMpg() {
+		return mpg;
+	}
+
+	public String getMake() {
+		return make;
+	}
+
+	public String getModel () {
+		return model;
+	}
+
+	private Car(CarBuilder carBuilder) {
+		this.make = builder.make;
+		this.model = builder.model;
+		this.mpg = builder.mpg;
+	}
+
+	public static class CarBuilder {
+		//required
+		private  String model;
+		//required
+		private  String make;
+		//optional
+		private  double mpg;
+
+		public CarBuilder(String model, String make) {
+			this.make = make;
+			this.model = model;
+		}
+
+		public CarBuilder mpg(double mpg){
+			this.mpg = mpg;
+			return this;
+		}
+
+		public Car build() {
+			Car car = new Car(this);
+			if(car.getMpg() < 0.0d) {
+				throw new InvalidStateException ("The miles per gallon cannot be a negative number");
+			}
+			return car;
+		}
+	}
+}
+
+Advantages of the Builder Pattern
+* Objects are immutable (observe the final on the attributes).
+* There is a private constructor on the class - preventing it from being instantiated.
+* The builder class dictates the required attributes. Once the required are set, the client is free to set the remaining or ignore them.
+* The builder can impose invariants on the object's attributes. Eg, the mpg cannot be a negative number. Note - the invariant checks should be done on the object's attributes and not the builder's fields - because the builder isn't thread safe
+
