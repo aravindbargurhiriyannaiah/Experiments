@@ -1,5 +1,8 @@
 package com.funkyganesha.builder;
 
+import org.apache.commons.lang3.StringUtils;
+import sun.plugin.dom.exception.InvalidStateException;
+
 /**
  * Created by barga009 on 8/2/14 at 3:27 PM. Comment {"$EXPR$"}
  */
@@ -70,6 +73,16 @@ public class Car {
         }
 
         public Car build() {
+            Car car = new Car(this);
+            if (StringUtils.isEmpty(StringUtils.trimToEmpty(car.getMake()))) {
+                throw new InvalidStateException("The car make is empty or null");
+            }
+            if (StringUtils.isEmpty(StringUtils.trimToEmpty(car.getModel()))) {
+                throw new InvalidStateException("The model of the car is empty or null");
+            }
+            if (car.getMilesPerGallon() < 0.0d) {
+                throw new InvalidStateException("The miles per gallon cannot be negative");
+            }
             return new Car(this);
         }
     }
